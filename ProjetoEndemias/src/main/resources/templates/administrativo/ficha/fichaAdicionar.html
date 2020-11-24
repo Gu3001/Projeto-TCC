@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en" layout:decorate="~{fragments/layout}">
+
+<head>
+<title>PhoenixCommerce 1.0</title>
+<meta charset="utf-8">
+
+</head>
+
+<body>
+
+
+	<section class="layout-content" layout:fragment="corpo">
+		<!-- Begin Page Content------------------------------------------------------------------------------->
+		<div class="container-fluid">
+
+			<div>
+
+				<div class="container">
+					<div class="form-row">
+
+
+						<form class="signup-form" th:object="${ficha}"
+							th:action="@{/administrativo/ficha/salvarFicha}" method="POST"
+							style="margin: 10px">
+
+							<fieldset>
+								<h1 class="text-center">Cadastro de Ficha</h1>
+
+								<div class="form-group col-md-6">
+									<div class="" th:if="${#fields.hasAnyErrors()}">
+										<div th:each="detailedError : ${#fields.detailedErrors()}">
+											<span th:text="${detailedError.message}"></span>
+										</div>
+									</div>
+								</div>
+								<div class="form-group col-md-12">
+									<label>Id</label> <input type="text" class="form-input" id="id"
+										th:field="*{id}" readOnly="readonly" />
+								</div>
+
+								<div class="form-group col-md-12">
+									<label>Funcionário</label> <select th:field="*{funcionario}"
+										class="form-input">
+										<option th:each="fun: ${funcionarios}" th:value="${fun.id}"
+											th:text="${fun.nome}"></option>
+									</select>
+								</div>
+
+								<div class="form-group col-md-12">
+									<label>Codigo</label> <input type="number" class="form-input"
+										th:field="*{codigo}" autofocus="autofocus"
+										placeholder="Informe o codigo" maxlength="50" />
+								</div>
+
+								<div class="form-group col-md-12">
+									<label>Localidade</label> <select th:field="*{cidade}"
+										class="form-input">
+										<option th:each="cid: ${cidades}" th:value="${cid.id}"
+											th:text="${cid.nome}"></option>
+									</select>
+								</div>
+
+								<div class="form-group col-md-12">
+									<label>Categ. Localid.</label> <input type="text"
+										class="form-input" th:field="*{categoria}"
+										autofocus="autofocus" placeholder="Informe a Categ. Localid."
+										maxlength="50" />
+								</div>
+
+								<div class="form-group col-md-12">
+									<label for="exampleFormControlSelect1">Zona</label> <select
+										class="form-input" id="exampleFormControlSelect1"
+										th:field="*{zona}">
+										<option value="Zona Urbana">Urbana</option>
+										<option value="zona Rural">Rural</option>
+									</select>
+								</div>
+
+								<div class="form-group col-md-12">
+									<label for="exampleFormControlSelect2">Tipo</label> <select
+										class="form-input" id="exampleFormControlSelect2"
+										th:field="*{tipo}">
+										<option value="Sede">Sede</option>
+										<option value="Outros">Outros</option>
+									</select>
+								</div>
+
+								<div class="form-group col-md-12">
+									<label for="exampleFormControlSelect3">Concluido</label> <select
+										class="form-input" id="exampleFormControlSelect3"
+										th:field="*{conclusao}">
+										<option value="Sim">Sim</option>
+										<option value="Não">Não</option>
+									</select>
+								</div>
+
+								<div class="form-group col-md-12">
+									<label>Ciclo / Ano</label> <input type="text"
+										class="form-input" th:field="*{cicloAno}"
+										autofocus="autofocus" placeholder="Informe o Ciclo/Ano."
+										maxlength="50" />
+								</div>
+
+								<!-- itensEntrada abaixo -->
+								<hr />
+								<h1 class="text-center">Cadastro de Logradouros</h1>
+								<br>
+								<br>
+
+								<div th:object="${enderecos}" class="form-row">
+
+									<!-- <div class="form-group col-md-3" >
+										<label>Produto</label> <select th:field="*{produto}"
+											class="form-input">
+											<option th:each="pro: ${produtos}" th:value="${pro.id}"
+												th:text="${pro.nome}"></option>
+										</select>
+									</div> -->
+									<div class="form-group col-md-6">
+										<label>Número do Quarteirão</label> <input type="number"
+											class="form-input" th:field="*{numQuarteirao}"
+											autofocus="autofocus"
+											placeholder="Informe o número do quarteirão" maxlength="50" />
+									</div>
+
+									<div class="form-group col-md-2">
+										<label>Segmento Anterior</label> <input type="text"
+											class="form-input" th:field="*{segmentoAnterior}"
+											autofocus="autofocus"
+											placeholder="Informe o segmento Anterior" maxlength="50" />
+									</div>
+
+									<div class="form-group col-md-2">
+										<label>Lado</label> <input type="text" class="form-input"
+											th:field="*{segmentoAnterior}" autofocus="autofocus"
+											placeholder="Informe o lado" maxlength="50" />
+									</div>
+
+									<div class="form-group col-md-6">
+										<label>Endereço</label> <input type="text" class="form-input"
+											th:field="*{endereco}" autofocus="autofocus"
+											placeholder="Informe o endereço" maxlength="50" />
+									</div>
+
+									<div class="form-group col-md-2">
+										<label>Número</label> <input type="number" class="form-input"
+											th:field="*{numero}" autofocus="autofocus"
+											placeholder="Informe o número" maxlength="50" />
+									</div>
+
+									<div class="form-group col-md-2">
+										<label>Segmento</label> <input type="text" class="form-input"
+											th:field="*{segmento}" autofocus="autofocus"
+											placeholder="Informe o segmento" maxlength="50" />
+									</div>
+
+									<div class="form-group col-md-2">
+										<label>Complemento</label> <input type="text"
+											class="form-input" th:field="*{complemento}"
+											autofocus="autofocus" placeholder="Informe o complemento"
+											maxlength="50" />
+									</div>
+									<div class="form-group col-md-6">
+										<label for="exampleFormControlSelect4">Tipo</label> <select
+											class="form-input" id="exampleFormControlSelect4"
+											th:field="*{tipoImovel}">
+											<option value="R">Residencial</option>
+											<option value="T">Comércio</option>
+											<option value="TB">Terreno Baldio</option>
+											<option value="PE">Ponto Estratégico</option>
+											<option value="O">Outro</option>
+										</select>
+									</div>
+
+									<div class="form-group col-md-2">
+										<label for="exampleFormControlSelect5">Visita</label> <select
+											class="form-input" id="exampleFormControlSelect5"
+											th:field="*{visita}">
+											<option value="N">Normal.</option>
+											<option value="R">Recup.</option>
+										</select>
+									</div>
+									<!--como utilizar Boolean-->
+									<div class="form-group col-md-2">
+										<label for="exampleFormControlSelect6">Pendência</label> <select
+											class="form-input" id="exampleFormControlSelect6"
+											th:field="*{pendencia}">
+											<option value="">Não</option>
+											<option value="x">Sim</option>
+										</select>
+									</div>
+
+									<div class="form-group col-md-2">
+										<label for="exampleFormControlSelect7">Imóvel Trat.</label> <select
+											class="form-input" id="exampleFormControlSelect7"
+											th:field="*{imvTrat}">
+											<option value="">Não</option>
+											<option value="x">Sim</option>
+										</select>
+									</div>
+
+
+
+								</div>
+								<!-- CADASTRO DE AMOSTRA --------------------------------------- -->
+								<div class="row">
+									<div class="form-group col-md-1">
+										<div th:object="${amostra}" class="form-row">
+
+											<!-- Botão para acionar modal -->
+											<button type="button" class="btn btn-primary"
+												data-toggle="modal" data-target="#ExemploModalCentralizado">
+												Amostra</button>
+
+											<!-- Modal -->
+											<div class="modal fade" id="ExemploModalCentralizado"
+												tabindex="-1" role="dialog"
+												aria-labelledby="TituloModalCentralizado" aria-hidden="true">
+												<div class="modal-dialog modal-dialog-centered"
+													role="document">
+													<div class="modal-content">
+														<div class="modal-header">
+															<h5 class="modal-title" id="TituloModalCentralizado">Cadastrar
+																Amostra</h5>
+															<button type="button" class="close" data-dismiss="modal"
+																aria-label="Fechar">
+																<span aria-hidden="true">&times;</span>
+															</button>
+														</div>
+														<!-- Inicio conteudo do modal -->
+
+														<div class="form-group col-md-12">
+															<label>Tubitos</label> <input type="number"
+																class="form-input" th:field="*{qtdTubitos}"
+																autofocus="autofocus"
+																placeholder="Informe a quantidade de tubitos"
+																maxlength="50" />
+														</div>
+
+														<div class="form-group col-md-12">
+															<label>Número da Amostra Inicial</label> <input
+																type="number" class="form-input"
+																th:field="*{numAmostraInicial}" autofocus="autofocus"
+																placeholder="Informe o número da amostra inicial"
+																maxlength="50" />
+														</div>
+
+														<div class="form-group col-md-12">
+															<label>Número da Amostra Final</label> <input
+																type="number" class="form-input"
+																th:field="*{numAmostraFinal}" autofocus="autofocus"
+																placeholder="Informe o número da amostra final"
+																maxlength="50" />
+														</div>
+
+														<!-- Fim do Conteúdo modal -->
+														<div class="modal-footer">
+															<button type="button" class="btn btn-secondary"
+																data-dismiss="modal">Voltar</button>
+															<!--  <buttonss type="button" class="btn btn-primary">Salvar
+														mudanças</button>-->
+														</div>
+													</div>
+												</div>
+											</div>
+											<!-- Fim do modal -->
+
+										</div>
+									</div>
+
+
+									<!-- fim do Cadastro de tubitos --------------------------------------- -->
+
+									<!-- CADASTRO DE DEPOSITOS --------------------------------------- -->
+									<div class="form-group col-md-1">
+										<div th:object="${depositos}" class="form-row">
+
+											<!-- Botão para acionar modal -->
+											<button type="button" class="btn btn-primary"
+												data-toggle="modal" data-target="#depositos">
+												Depositos</button>
+
+											<!-- Modal -->
+											<div class="modal fade" id="depositos" tabindex="-1"
+												role="dialog" aria-labelledby="TituloModalCentralizado"
+												aria-hidden="true">
+												<div class="modal-dialog modal-dialog-centered"
+													role="document">
+													<div class="modal-content">
+														<div class="modal-header">
+															<h5 class="modal-title" id="depositos">Cadastrar
+																Depositos</h5>
+															<button type="button" class="close" data-dismiss="modal"
+																aria-label="Fechar">
+																<span aria-hidden="true">&times;</span>
+															</button>
+														</div>
+														<!-- Inicio conteudo do modal -->
+
+														<div class="form-group col-md-12">
+															<label>A1 - Caixa D'Agua(elevado)</label> <input
+																type="number" class="form-input" th:field="*{a1}"
+																autofocus="autofocus" placeholder="Informe A1"
+																maxlength="50" />
+														</div>
+														<div class="form-group col-md-12">
+															<label>A2 - Depositos D'Agua(baixo)</label> <input
+																type="number" class="form-input" th:field="*{a2}"
+																autofocus="autofocus" placeholder="Informe A2"
+																maxlength="50" />
+														</div>
+														<div class="form-group col-md-12">
+															<label>B - Pequenos depósitos móveis</label> <input
+																type="number" class="form-input" th:field="*{b}"
+																autofocus="autofocus" placeholder="Informe B"
+																maxlength="50" />
+														</div>
+														<div class="form-group col-md-12">
+															<label>C - Depositos fixos</label> <input type="number"
+																class="form-input" th:field="*{c}" autofocus="autofocus"
+																placeholder="Informe C" maxlength="50" />
+														</div>
+														<div class="form-group col-md-12">
+															<label>D1 - Pneus e outros materiais rolantes</label> <input
+																type="number" class="form-input" th:field="*{d1}"
+																autofocus="autofocus" placeholder="Informe D1"
+																maxlength="50" />
+														</div>
+														<div class="form-group col-md-12">
+															<label>D2 - Lixos </label> <input type="number"
+																class="form-input" th:field="*{d2}"
+																autofocus="autofocus" placeholder="Informe D2"
+																maxlength="50" />
+														</div>
+														<div class="form-group col-md-12">
+															<label>E - Depósitos naturais </label> <input
+																type="number" class="form-input" th:field="*{e}"
+																autofocus="autofocus" placeholder="Informe E"
+																maxlength="50" />
+														</div>
+														<div class="form-group col-md-12">
+															<label>Eliminados </label> <input type="number"
+																class="form-input" th:field="*{eliminados}"
+																autofocus="autofocus" placeholder="eliminados"
+																maxlength="50" />
+														</div>
+														<!-- Fim do Conteúdo modal -->
+														<div class="modal-footer">
+															<button type="button" class="btn btn-secondary"
+																data-dismiss="modal">Voltar</button>
+															<!--  <buttonss type="button" class="btn btn-primary">Salvar
+														mudanças</button>-->
+														</div>
+													</div>
+												</div>
+											</div>
+											<!-- Fim do modal -->
+
+
+										</div>
+									</div>
+
+
+
+
+									<!-- CADASTRO DE TRATAMENTO --------------------------------------- -->
+									<div class="form-group col-md-1">
+										<div th:object="${tratamento}" class="form-row">
+
+											<!-- Botão para acionar modal -->
+											<button type="button" class="btn btn-primary"
+												data-toggle="modal" data-target="#tratamento">
+												Tratamento</button>
+
+											<!-- Modal -->
+											<div class="modal fade" id="tratamento" tabindex="-1"
+												role="dialog" aria-labelledby="TituloModalCentralizado"
+												aria-hidden="true">
+												<div class="modal-dialog modal-dialog-centered"
+													role="document">
+													<div class="modal-content">
+														<div class="modal-header">
+															<h5 class="modal-title" id="depositos">Cadastrar
+																Tratamento</h5>
+															<button type="button" class="close" data-dismiss="modal"
+																aria-label="Fechar">
+																<span aria-hidden="true">&times;</span>
+															</button>
+														</div>
+														<!-- Inicio conteudo do modal -->
+														
+														<div class="form-group col-md-12">
+															<h2>Larvicida 1</h2>
+														</div>
+
+														<div class="form-group col-md-12">
+															<label>Tipo</label> <input
+																type="number" class="form-input" th:field="*{larv1Tipo}"
+																autofocus="autofocus" placeholder="Informe o tipo de Larvicida1"
+																maxlength="50" />
+														</div>
+														
+														<div class="form-group col-md-12">
+															<label>Qtde. (Gramas)</label> <input
+																type="number" class="form-input" th:field="*{larv1QtdeGramas}"
+																autofocus="autofocus" placeholder="Informe Qtde. (Gramas) de larvicida1"
+																maxlength="50" />
+														</div>
+														
+														<div class="form-group col-md-12">
+															<label>Qtde. Dep. Trat.</label> <input
+																type="number" class="form-input" th:field="*{larv1QtdeDepTrat}"
+																autofocus="autofocus" placeholder="Informe Qtde. Dep. Trat. de larvicida1"
+																maxlength="50" />
+														</div>
+														
+														<div class="form-group col-md-12">
+															<h2>Larvicida 2</h2>
+														</div>
+
+														<div class="form-group col-md-12">
+															<label>Tipo</label> <input
+																type="number" class="form-input" th:field="*{larv2Tipo}"
+																autofocus="autofocus" placeholder="Informe o tipo de Larvicida2"
+																maxlength="50" />
+														</div>
+														
+														<div class="form-group col-md-12">
+															<label>Qtde. (Gramas)</label> <input
+																type="number" class="form-input" th:field="*{larv2QtdeGramas}"
+																autofocus="autofocus" placeholder="Informe Qtde. (Gramas) de larvicida2"
+																maxlength="50" />
+														</div>
+														
+														<div class="form-group col-md-12">
+															<label>Qtde. Dep. Trat.</label> <input
+																type="number" class="form-input" th:field="*{larv2QtdeDepTrat}"
+																autofocus="autofocus" placeholder="Informe Qtde. Dep. Trat. de larvicida2"
+																maxlength="50" />
+														</div>
+														
+														<div class="form-group col-md-12">
+															<h2>Adulticida</h2>
+														</div>
+
+														<div class="form-group col-md-12">
+															<label>Tipo</label> <input
+																type="number" class="form-input" th:field="*{adultTipo}"
+																autofocus="autofocus" placeholder="Informe o tipo de adulticida"
+																maxlength="50" />
+														</div>
+														
+														<div class="form-group col-md-12">
+															<label>Qtde. Cargas</label> <input
+																type="number" class="form-input" th:field="*{adultQtdeCargas}"
+																autofocus="autofocus" placeholder="Informe a quantidade de cargas"
+																maxlength="50" />
+														</div>
+		
+														<!-- Fim do Conteúdo modal -->
+														<div class="modal-footer">
+															<button type="button" class="btn btn-secondary"
+																data-dismiss="modal">Voltar</button>
+															<!--  <buttonss type="button" class="btn btn-primary">Salvar
+														mudanças</button>-->
+														</div>
+													</div>
+												</div>
+											</div>
+											<!-- Fim do modal -->
+
+
+										</div>
+									</div>
+								</div>
+								<!-- fim de botões form --------------------------------------- -->
+
+								<!-- Botão de adicionar -->
+								<div class="form-group">
+									<br />
+									<br />
+									<button type="submit" name="acao" th:value="itens"
+										class="btn btn-primary btn-lg">+ Adicionar Endereço</button>
+								</div>
+
+								<!-- Botões diversos -->
+								<div class="form-group">
+									<input type="submit" class="btn btn-primary btn-lg"
+										value="Salvar Ficha" name="acao" th:value="salvar" /> <a
+										th:href="@{/administrativo/ficha/fichas}">
+										<button type="button" class="btn btn-danger btn-lg">Cancelar</button>
+									</a> 
+								</div>
+								
+								
+								<!-- resolver problema de nullpointer em add -->
+								<div class="form-row">
+									<div class="form-group col-md-12">
+										<div class="panel panel-default">
+											<div class="panel-body">
+												<div class="table-responsive">
+													<table
+														class="table table-bordered">
+														<thead>
+															<tr>
+																<th>ID</th>
+																<th>Rua</th>
+																<th>Número</th>
+																<th></th>
+																
+															</tr>
+														</thead>
+														<tbody>
+															<tr th:each="enderecoss: ${enderecoss}">
+																<td th:text="${enderecoss.id}"></td>
+																<td th:text="${enderecoss.endereco}"></td>
+																<td th:text="${enderecoss.numero}"></td>
+																
+																<td>
+																	<div class="btn-group pull-right">
+																		<a class="btn btn-sm btn-primary"
+																			th:href="@{/administrativo/enderecos/editarEnderecos/{id}(id=${enderecoss.id})}"><i class="fas fa-edit"></i></a>
+
+																		<a class="delete btn btn-sm btn-warning" data-toggle="modal" data-target="#modal-warning" 
+																		th:attr="data-target='#modal-warning'+${enderecoss.id }"><i class="fas fa-trash"></i></a>
+																	</div> 
+																	</td>
+																	  
+																	<div class="modal modal-warning fade in"
+																		th:id="modal-warning+${enderecoss.id }">
+																		<div class="modal-dialog">
+																			<div class="modal-content">
+																				<div class="modal-header">
+																					<button type="button" class="close"
+																						data-dismiss="modal" aria-label="Fechar">
+																						<span aria-hidden="true">×</span>
+																					</button>
+																					<h5 class="modal-title">Fechar</h5>
+																				</div>
+																				<div class="modal-body">
+																					<h3>Deseja realmente Remover?</h3>
+																				</div>
+																				<div class="modal-footer">
+																					<button type="button"
+																						class="btn btn-outline pull-left"
+																						data-dismiss="modal">Sair</button>
+																					<a type="button" class="btn btn-outline"
+																						th:href="@{/administrativo/enderecos/removerEnderecos/{id}(id=${enderecoss.id})}"><i
+																						class="fa fa-check"></i>&nbsp;Sim</a>
+																				</div>
+																			</div>
+																		</div>
+																	</div> 
+
+																</td>
+																
+															</tr>
+														</tbody>
+													</table>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+					</div>
+
+					</fieldset>
+
+
+
+
+
+					</form>
+
+				</div>
+			</div>
+
+		</div>
+		<!-- /.container-fluid -->
+	</section>
+
+</body>
+
+</html>

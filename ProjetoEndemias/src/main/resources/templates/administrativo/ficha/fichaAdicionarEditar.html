@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en" layout:decorate="~{fragments/layout}">
+
+<head>
+<title>PhoenixCommerce 1.0</title>
+<meta charset="utf-8">
+
+</head>
+
+<body>
+
+
+	<section class="layout-content" layout:fragment="corpo">
+		<!-- Begin Page Content------------------------------------------------------------------------------->
+		<div class="container-fluid">
+
+			<div>
+
+				<div class="container">
+					<div class="form-row">
+
+
+						<form class="signup-form" th:object="${ficha}"
+							th:action="@{/administrativo/ficha/salvarFicha2}" method="POST"
+							style="margin: 10px">
+
+							<fieldset>
+								<h1 class="text-center">Cadastro de Ficha</h1>
+
+								<div class="form-group col-md-12">
+									<div class="" th:if="${#fields.hasAnyErrors()}">
+										<div th:each="detailedError : ${#fields.detailedErrors()}">
+											<span th:text="${detailedError.message}"></span>
+										</div>
+									</div>
+								</div>
+								<div class="form-group col-md-12">
+									<label>Id</label> <input type="text" class="form-input" id="id"
+										th:field="*{id}" readOnly="readonly" />
+								</div>
+
+								<div class="form-group col-md-12">
+									<label>Funcionário</label> <select th:field="*{funcionario}"
+										class="form-input">
+										<option th:each="fun: ${funcionarios}" th:value="${fun.id}"
+											th:text="${fun.nome}"></option>
+									</select>
+								</div>
+
+								<div class="form-group col-md-12">
+									<label>Codigo</label> <input type="number" class="form-input"
+										th:field="*{codigo}" autofocus="autofocus"
+										placeholder="Informe o codigo" maxlength="50" />
+								</div>
+
+								<div class="form-group col-md-12">
+									<label>Localidade</label> <select th:field="*{cidade}"
+										class="form-input">
+										<option th:each="cid: ${cidades}" th:value="${cid.id}"
+											th:text="${cid.nome}"></option>
+									</select>
+								</div>
+
+								<div class="form-group col-md-12">
+									<label>Categ. Localid.</label> <input type="text"
+										class="form-input" th:field="*{categoria}"
+										autofocus="autofocus" placeholder="Informe a Categ. Localid."
+										maxlength="50" />
+								</div>
+
+								<div class="form-group col-md-12">
+									<label for="exampleFormControlSelect1">Zona</label> <select
+										class="form-input" id="exampleFormControlSelect1"
+										th:field="*{zona}">
+										<option value="Zona Urbana">Urbana</option>
+										<option value="zona Rural">Rural</option>
+									</select>
+								</div>
+
+								<div class="form-group col-md-12">
+									<label for="exampleFormControlSelect2">Tipo</label> <select
+										class="form-input" id="exampleFormControlSelect2"
+										th:field="*{tipo}">
+										<option value="Sede">Sede</option>
+										<option value="Outros">Outros</option>
+									</select>
+								</div>
+
+								<div class="form-group col-md-12">
+									<label for="exampleFormControlSelect3">Concluido</label> <select
+										class="form-input" id="exampleFormControlSelect3"
+										th:field="*{conclusao}">
+										<option value="Sim">Sim</option>
+										<option value="Não">Não</option>
+									</select>
+								</div>
+
+								<div class="form-group col-md-12">
+									<label>Ciclo / Ano</label> <input type="text"
+										class="form-input" th:field="*{cicloAno}"
+										autofocus="autofocus" placeholder="Informe o Ciclo/Ano."
+										maxlength="50" />
+								</div>
+
+								<!-- itensEntrada abaixo -->
+								<hr />
+
+								<!-- Botões diversos -->
+								<div class="form-group">
+									<input type="submit" class="btn btn-primary btn-lg"
+										value="Salvar Ficha" name="acao" th:value="salvar" /> <a
+										th:href="@{/administrativo/ficha/fichas}">
+										<button type="button" class="btn btn-danger btn-lg">Cancelar</button>
+									</a> 
+								</div>
+
+
+								<div class="form-row">
+									<div class="form-group col-md-12">
+										<div class="panel panel-default">
+											<div class="panel-body">
+												<div class="table-responsive">
+													<table
+														class="table table-bordered">
+														<thead>
+															<tr>
+																<th>ID</th>
+																<th>Rua</th>
+																<th>Número</th>
+																<th></th>
+																
+															</tr>
+														</thead>
+														<tbody>
+															<tr th:each="enderecos: ${enderecos}">
+																<td th:text="${enderecos.id}"></td>
+																<td th:text="${enderecos.endereco}"></td>
+																<td th:text="${enderecos.numero}"></td>
+																
+																<td>
+																	<div class="btn-group pull-right">
+																		<a class="btn btn-sm btn-primary"
+																			th:href="@{/administrativo/enderecos/editarEnderecos/{id}(id=${enderecos.id})}"><i class="fas fa-edit"></i></a>
+
+																		<a class="delete btn btn-sm btn-warning" data-toggle="modal" data-target="#modal-warning" 
+																		th:attr="data-target='#modal-warning'+${enderecos.id }"><i class="fas fa-trash"></i></a>
+																	</div> 
+																	</td>
+																	  
+																	<div class="modal modal-warning fade in"
+																		th:id="modal-warning+${enderecos.id }">
+																		<div class="modal-dialog">
+																			<div class="modal-content">
+																				<div class="modal-header">
+																					<button type="button" class="close"
+																						data-dismiss="modal" aria-label="Fechar">
+																						<span aria-hidden="true">×</span>
+																					</button>
+																					<h5 class="modal-title">Fechar</h5>
+																				</div>
+																				<div class="modal-body">
+																					<h3>Deseja realmente Remover?</h3>
+																				</div>
+																				<div class="modal-footer">
+																					<button type="button"
+																						class="btn btn-outline pull-left"
+																						data-dismiss="modal">Sair</button>
+																					<a type="button" class="btn btn-outline"
+																						th:href="@{/administrativo/enderecos/removerEnderecos/{id}(id=${enderecos.id})}"><i
+																						class="fa fa-check"></i>&nbsp;Sim</a>
+																				</div>
+																			</div>
+																		</div>
+																	</div> 
+
+																</td>
+																
+															</tr>
+														</tbody>
+													</table>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								
+								
+								
+
+					</div>
+
+					</fieldset>
+
+
+
+
+
+					</form>
+
+				</div>
+			</div>
+
+	
+		<!-- /.container-fluid -->
+	</section>
+
+</body>
+
+</html>

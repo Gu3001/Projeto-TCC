@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en" layout:decorate="~{fragments/layout}">
+
+<head>
+<title>PhoenixCommerce 1.0</title>
+<meta charset="utf-8">
+
+</head>
+
+<body>
+
+
+	<section class="layout-content" layout:fragment="corpo">
+		<!-- Begin Page Content------------------------------------------------------------------------------->
+		<div class="container-fluid">
+
+			<div>
+
+				<div class="container">
+					<div class="form-row">
+
+
+						<form class="signup-form" th:object="${tratamento}"
+							th:action="@{/administrativo/tratamento/salvarTratamento}"
+							method="POST" style="margin: 10px">
+
+							<fieldset>
+								<h1 class="text-center">Cadastro de Logradouros</h1>
+								<br> <br>
+								<div class="row">
+									<!--  <div class="form-group col-md-6">
+									<div class="" th:if="${#fields.hasAnyErrors()}">
+										<div th:each="detailedError : ${#fields.detailedErrors()}">
+											<span th:text="${detailedError.message}"></span>
+										</div>
+									</div>
+								</div>-->
+
+
+									<div class="form-group col-md-12">
+										<div class="invisible">
+											<input type="text" class="form-input"
+												id="id" th:field="*{id}" readOnly="readonly" />
+										</div>
+									</div>
+
+									<div class="form-group col-md-12">
+										<h2>Larvicida 1</h2>
+									</div>
+
+									<div class="form-group col-md-12">
+										<label>Tipo</label> <input type="number" class="form-input"
+											th:field="*{larv1Tipo}" autofocus="autofocus"
+											placeholder="Informe o tipo de Larvicida1" maxlength="50" />
+									</div>
+
+									<div class="form-group col-md-12">
+										<label>Qtde. (Gramas)</label> <input type="number"
+											class="form-input" th:field="*{larv1QtdeGramas}"
+											autofocus="autofocus"
+											placeholder="Informe Qtde. (Gramas) de larvicida1"
+											maxlength="50" />
+									</div>
+
+									<div class="form-group col-md-12">
+										<label>Qtde. Dep. Trat.</label> <input type="number"
+											class="form-input" th:field="*{larv1QtdeDepTrat}"
+											autofocus="autofocus"
+											placeholder="Informe Qtde. Dep. Trat. de larvicida1"
+											maxlength="50" />
+									</div>
+
+									<div class="form-group col-md-12">
+										<h2>Larvicida 2</h2>
+									</div>
+
+									<div class="form-group col-md-12">
+										<label>Tipo</label> <input type="number" class="form-input"
+											th:field="*{larv2Tipo}" autofocus="autofocus"
+											placeholder="Informe o tipo de Larvicida2" maxlength="50" />
+									</div>
+
+									<div class="form-group col-md-12">
+										<label>Qtde. (Gramas)</label> <input type="number"
+											class="form-input" th:field="*{larv2QtdeGramas}"
+											autofocus="autofocus"
+											placeholder="Informe Qtde. (Gramas) de larvicida2"
+											maxlength="50" />
+									</div>
+
+									<div class="form-group col-md-12">
+										<label>Qtde. Dep. Trat.</label> <input type="number"
+											class="form-input" th:field="*{larv2QtdeDepTrat}"
+											autofocus="autofocus"
+											placeholder="Informe Qtde. Dep. Trat. de larvicida2"
+											maxlength="50" />
+									</div>
+
+									<div class="form-group col-md-12">
+										<h2>Adulticida</h2>
+									</div>
+
+									<div class="form-group col-md-12">
+										<label>Tipo</label> <input type="number" class="form-input"
+											th:field="*{adultTipo}" autofocus="autofocus"
+											placeholder="Informe o tipo de adulticida" maxlength="50" />
+									</div>
+
+									<div class="form-group col-md-12">
+										<label>Qtde. Cargas</label> <input type="number"
+											class="form-input" th:field="*{adultQtdeCargas}"
+											autofocus="autofocus"
+											placeholder="Informe a quantidade de cargas" maxlength="50" />
+									</div>
+
+									<div class="form-group col-md-12">
+										<div class="invisible">
+											 <input type="text" class="form-input"
+												id="id2" th:field="*{enderecos}" readOnly="readonly" />
+										</div>
+									</div>
+
+									<!-- Botões diversos -->
+									<div class="form-group">
+										<input type="submit" class="btn btn-primary btn-lg"
+											value="Salvar Ficha" name="acao" th:value="salvar" /> <a
+											th:href="@{/administrativo/enderecos/editarEnderecos/{id}(id=${tratamento.enderecos.id})}">
+											<button type="button" class="btn btn-danger btn-lg">Cancelar</button>
+										</a> 
+									</div>
+
+
+
+								</div>
+
+							</fieldset>
+
+
+
+
+
+						</form>
+
+					</div>
+				</div>
+
+			</div>
+			<!-- /.container-fluid -->
+	</section>
+
+</body>
+
+</html>

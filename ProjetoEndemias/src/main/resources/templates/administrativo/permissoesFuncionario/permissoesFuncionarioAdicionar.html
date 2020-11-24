@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" layout:decorate="~{fragments/layout}">
+
+<head>
+<title>PhoenixCommerce 1.0</title>
+<meta charset="utf-8">
+
+</head>
+
+<body>
+
+
+	<section class="layout-content" layout:fragment="corpo">
+
+		<!-- Begin Page Content------------------------------------------------------------------------------->
+		<div class="container-fluid">
+
+			<div class="main">
+
+				<div class="container">
+					<div class="signup-content">
+						<h2 class="form-title">Cadastro de Permissão Funionário</h2>
+
+						<form class="signup-form" th:object="${permissoesFuncionario}"
+							th:action="@{/administrativo/permissoesFuncionario/salvarPermissoesFuncionario}"
+							method="POST" style="margin: 10px">
+
+							<fieldset>
+
+								<div class="form-input">
+									<div class="" th:if="${#fields.hasAnyErrors()}">
+										<div th:each="detailedError : ${#fields.detailedErrors()}">
+											<span th:text="${detailedError.message}"></span>
+										</div>
+									</div>
+								</div>
+
+								<div class="form-group">
+									<input type="text" class="form-input" id="id" th:field="*{id}"
+										readOnly="readonly" />
+								</div>
+
+
+								<div class="form-group">
+									<label>Funcionario</label> <select th:field="*{funcionario}"
+										class="form-input">
+										<option th:each="fun: ${funcionarios}" th:value="${fun.id}"
+											th:text="${fun.nome}"></option>
+									</select>
+								</div>
+
+								<div class="form-group">
+
+									<label>Papel</label> <select th:field="*{papel}"
+										class="form-input">
+										<option th:each="pap: ${papeis}" th:value="${pap.id}"
+											th:text="${pap.cargo}"></option>
+									</select>
+								</div>
+					</div>
+
+					</fieldset>
+
+
+
+
+					<div class="form-group">
+						<input type="submit" name="submit" id="submit" class="form-submit"
+							value="Salvar" /> <a th:href="@{/administrativo}">
+							<button type="button" class="form-cancel" id="submit">Cancelar</button>
+						</a>
+					</div>
+
+					</form>
+
+				</div>
+			</div>
+
+		</div>
+		<!-- /.container-fluid -->
+
+	</section>
+
+</body>
+
+</html>

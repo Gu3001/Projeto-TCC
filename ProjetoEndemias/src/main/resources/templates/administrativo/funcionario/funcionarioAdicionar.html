@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en" layout:decorate="~{fragments/layout}">
+
+<head>
+<title>PhoenixCommerce 1.0</title>
+<meta charset="utf-8">
+
+</head>
+
+<body>
+
+
+	<section class="layout-content" layout:fragment="corpo">
+
+		<!-- Begin Page Content------------------------------------------------------------------------------->
+		<div class="container-fluid">
+
+			<div class="main">
+
+				<div class="container">
+					<div class="signup-content">
+						<h2 class="form-title">Cadastro de Funcionario</h2>
+
+						<form class="signup-form" th:object="${funcionario}"
+							th:action="@{/administrativo/funcionario/salvarFuncionario}"
+							method="POST" style="margin: 10px">
+
+							<fieldset>
+
+
+								<div class="form-group">
+									<div class="form-input" th:if="${#fields.hasAnyErrors()}">
+										<div th:each="detailedError : ${#fields.detailedErrors()}">
+											<span th:text="${detailedError.message}"></span>
+										</div>
+									</div>
+								</div>
+
+
+								<div class="form-group">
+
+									<input type="text" class="form-input" id="id" th:field="*{id}"
+										readOnly="readonly" />
+
+								</div>
+
+								<div class="form-group"
+									th:classappend="${#fields.hasErrors('nome')}? 'has-error'">
+									<label>Nome</label> <input type="text" class="form-input"
+										th:field="*{nome}" autofocus="autofocus"
+										placeholder="Informe o nome do funcionario" maxlength="50" />
+								</div>
+
+
+								<div class="form-group"
+									th:classappend="${#fields.hasErrors('email')}? 'has-error'">
+									<label>Email</label> <input type="text" class="form-input"
+										th:field="*{email}" autofocus="autofocus"
+										placeholder="Informe seu email" maxlength="50" />
+								</div>
+
+
+								<div class="form-group"
+									th:classappend="${#fields.hasErrors('senha')}? 'has-error'">
+									<label>Senha</label> <input type="password" class="form-input"
+										th:field="*{senha}" autofocus="autofocus"
+										placeholder="Informe sua senha" />
+								</div>
+
+								<div class="form-group"
+									th:classappend="${#fields.hasErrors('cpf')}? 'has-error'">
+									<label>CPF</label> <input type="text" class="form-input"
+										th:field="*{cpf}" autofocus="autofocus"
+										placeholder="Informe seu CPF" maxlength="50" />
+								</div>
+								
+								 <div class="form-group"
+									th:classappend="${#fields.hasErrors('telefone')}? 'has-error'">
+									<label>Telefone</label> <input type="text" class="form-input"
+										th:field="*{telefone}" autofocus="autofocus"
+										placeholder="Informe seu telefone" maxlength="50" />
+								</div>
+								
+								<div class="form-group"
+									th:classappend="${#fields.hasErrors('endereco')}? 'has-error'">
+									<label>Endereço</label> <input type="text" class="form-input"
+										th:field="*{endereco}" autofocus="autofocus"
+										placeholder="Informe seu endereço" maxlength="50" />
+								</div>
+								
+								<div class="form-group">
+
+									<label>Cidade</label> <select th:field="*{cidade}"
+										class="form-input">
+										<option th:each="cid: ${cidades}" th:value="${cid.id}"
+											th:text="${cid.nome}"></option>
+									</select>
+								</div>
+
+
+
+
+
+
+
+							</fieldset>
+
+
+
+
+							<div class="form-group">
+								<input type="submit" name="submit" id="submit"
+									class="form-submit" value="Salvar" /> <a
+									th:href="@{/administrativo}"><button type="button"
+										class="form-cancel" id="submit">Cancelar</button></a>
+							</div>
+
+						</form>
+
+					</div>
+				</div>
+
+			</div>
+			<!-- /.container-fluid -->
+
+		</div>
+		<!-- End of Main Content -->
+	</section>
+
+</body>
+
+</html>

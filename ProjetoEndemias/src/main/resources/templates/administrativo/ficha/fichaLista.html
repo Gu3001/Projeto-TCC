@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en" layout:decorate="~{fragments/layout}">
+
+<head>
+<title>Lista de Fichas</title>
+<meta charset="utf-8">
+
+</head>
+
+<body>
+
+
+
+	<section class="layout-content" layout:fragment="corpo">
+		<!-- Begin Page Content------------------------------------------------------------------------------->
+		<div class="container-fluid">
+
+					<div>
+						<div>
+							<!-- Nested Row within Card Body -->
+							<div class="row">
+
+								<div class="col-lg-12">
+									<div class="p-5">
+
+										<div >
+											<div class="panel-heading">
+												<strong>Lista de Fichas</strong>
+											</div>
+											<div>
+												<div class="table-responsive">
+													<table
+														class="table table-bordered">
+														<thead>
+															<tr>
+																<th>ID</th>
+																<th>Funcionário</th>
+																<th>Data atividade</th>
+																<th></th>
+															</tr>
+														</thead>
+														<tbody>
+															<tr th:each="ficha: ${fichas}">
+																<td th:text="${ficha.id}"></td>
+																<td th:text="${ficha.funcionario.nome}"></td>
+																<td th:text="${ficha.dataAtividade}"></td>
+																
+																<td>
+																	<div class="btn-group pull-right">
+																		<a class="btn btn-sm btn-success"
+																			th:href="@{/administrativo/ficha/continuarFicha/{id}(id=${ficha.id})}"><i class="fas fa-arrow-right"></i></a>
+																			
+																		<a class="btn btn-sm btn-primary"
+																			th:href="@{/administrativo/ficha/editarFicha/{id}(id=${ficha.id})}"><i class="fas fa-edit"></i></a>
+
+																		  <a class="btn btn-sm btn-warning" data-toggle="modal" data-target="#modal-warning" 
+																		th:attr="data-target='#modal-warning'+${ficha.id }"><i class="fas fa-trash"></i></a>
+																	</div> 
+																	</td>
+																	
+																	<div class="modal modal-warning fade in"
+																		th:id="modal-warning+${ficha.id }">
+																		<div class="modal-dialog">
+																			<div class="modal-content">
+																				<div class="modal-header">
+																					<button type="button" class="close"
+																						data-dismiss="modal" aria-label="Fechar">
+																						<span aria-hidden="true">×</span>
+																					</button>
+																					<h5 class="modal-title">Fechar</h5>
+																				</div>
+																				<div class="modal-body">
+																					<h3>Deseja realmente Remover?</h3>
+																				</div>
+																				<div class="modal-footer">
+																					<button type="button"
+																						class="btn btn-outline pull-left"
+																						data-dismiss="modal">Sair</button>
+																					<a type="button" class="btn btn-outline"
+																						th:href="@{/administrativo/ficha/removerFicha/{id}(id=${ficha.id})}"><i
+																						class="fa fa-check"></i>&nbsp;Sim</a>
+																				</div>
+																			</div>
+																		</div>
+																	</div> 
+
+																</td>
+																
+															</tr>
+														</tbody>
+													</table>
+												</div>
+											</div>
+											<div class="panel-footer">
+												<a class="btn btn btn-success"
+													th:href="@{/administrativo/ficha/adicionarFicha}">Adicionar</a>
+
+
+												<a class="btn btn-danger" th:href="@{/administrativo}">sair</a>
+
+
+											</div>
+										</div>
+
+										<hr>
+
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+				
+
+			
+
+
+			<!-- /.container-fluid -->
+
+		</div>
+	</section>
+
+</body>
+
+</html>

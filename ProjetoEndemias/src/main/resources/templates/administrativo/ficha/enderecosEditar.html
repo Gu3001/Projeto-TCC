@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en" layout:decorate="~{fragments/layout}">
+
+<head>
+<title>PhoenixCommerce 1.0</title>
+<meta charset="utf-8">
+
+</head>
+
+<body>
+
+
+	<section class="layout-content" layout:fragment="corpo">
+		<!-- Begin Page Content------------------------------------------------------------------------------->
+		<div class="container-fluid">
+
+			<div>
+
+				<div class="container">
+					<div class="form-row">
+
+
+						<form class="signup-form" th:object="${enderecos}"
+							th:action="@{/administrativo/enderecos/salvarEnderecos}"
+							method="POST" style="margin: 10px">
+
+							<fieldset>
+								<h1 class="text-center">Cadastro de Logradouros</h1>
+								<br> <br>
+								<div class="row">
+									<!--  <div class="form-group col-md-6">
+									<div class="" th:if="${#fields.hasAnyErrors()}">
+										<div th:each="detailedError : ${#fields.detailedErrors()}">
+											<span th:text="${detailedError.message}"></span>
+										</div>
+									</div>
+								</div>-->
+
+
+
+
+									<!-- <div class="form-group col-md-3" >
+										<label>Produto</label> <select th:field="*{produto}"
+											class="form-input">
+											<option th:each="pro: ${produtos}" th:value="${pro.id}"
+												th:text="${pro.nome}"></option>
+										</select>
+									</div> -->
+									<div class="form-group col-md-12">
+										<div class="invisible">
+											<label>Id</label> <input type="text" class="form-input"
+												id="id" th:field="*{id}" readOnly="readonly" />
+										</div>	
+									</div>
+
+									<div class="form-group col-md-6">
+										<label>Número do Quarteirão</label> <input type="number"
+											class="form-input" th:field="*{numQuarteirao}"
+											autofocus="autofocus"
+											placeholder="Informe o número do quarteirão" maxlength="50" />
+									</div>
+
+									<div class="form-group col-md-2">
+										<label>Segmento Anterior</label> <input type="text"
+											class="form-input" th:field="*{segmentoAnterior}"
+											autofocus="autofocus"
+											placeholder="Informe o segmento Anterior" maxlength="50" />
+									</div>
+
+									<div class="form-group col-md-2">
+										<label>Lado</label> <input type="text" class="form-input"
+											th:field="*{segmentoAnterior}" autofocus="autofocus"
+											placeholder="Informe o lado" maxlength="50" />
+									</div>
+
+									<div class="form-group col-md-6">
+										<label>Endereço</label> <input type="text" class="form-input"
+											th:field="*{endereco}" autofocus="autofocus"
+											placeholder="Informe o endereço" maxlength="50" />
+									</div>
+
+									<div class="form-group col-md-2">
+										<label>Número</label> <input type="number" class="form-input"
+											th:field="*{numero}" autofocus="autofocus"
+											placeholder="Informe o número" maxlength="50" />
+									</div>
+
+									<div class="form-group col-md-2">
+										<label>Segmento</label> <input type="text" class="form-input"
+											th:field="*{segmento}" autofocus="autofocus"
+											placeholder="Informe o segmento" maxlength="50" />
+									</div>
+
+									<div class="form-group col-md-2">
+										<label>Complemento</label> <input type="text"
+											class="form-input" th:field="*{complemento}"
+											autofocus="autofocus" placeholder="Informe o complemento"
+											maxlength="50" />
+									</div>
+									<div class="form-group col-md-6">
+										<label for="exampleFormControlSelect4">Tipo</label> <select
+											class="form-input" id="exampleFormControlSelect4"
+											th:field="*{tipoImovel}">
+											<option value="R">Residencial</option>
+											<option value="T">Comércio</option>
+											<option value="TB">Terreno Baldio</option>
+											<option value="PE">Ponto Estratégico</option>
+											<option value="O">Outro</option>
+										</select>
+									</div>
+
+									<div class="form-group col-md-2">
+										<label for="exampleFormControlSelect5">Visita</label> <select
+											class="form-input" id="exampleFormControlSelect5"
+											th:field="*{visita}">
+											<option value="N">Normal.</option>
+											<option value="R">Recup.</option>
+										</select>
+									</div>
+									<!--como utilizar Boolean-->
+									<div class="form-group col-md-2">
+										<label for="exampleFormControlSelect6">Pendência</label> <select
+											class="form-input" id="exampleFormControlSelect6"
+											th:field="*{pendencia}">
+											<option value="">Não</option>
+											<option value="x">Sim</option>
+										</select>
+									</div>
+
+									<div class="form-group col-md-2">
+										<label for="exampleFormControlSelect7">Imóvel Trat.</label> <select
+											class="form-input" id="exampleFormControlSelect7"
+											th:field="*{imvTrat}">
+											<option value="">Não</option>
+											<option value="x">Sim</option>
+										</select>
+									</div>
+									
+									<div class="invisible">
+										<label>Id</label> <input type="text" class="form-input"
+											id="id" th:field="*{ficha}" readOnly="readonly" />
+									</div>
+
+
+
+								</div>
+					</div>
+
+
+
+					<!-- Botões diversos -->
+					<div class="form-group">
+						<input type="submit" class="btn btn-primary btn-lg"
+							value="Salvar Ficha" name="acao" th:value="salvar" /> <a
+							th:href="@{/administrativo/enderecos/voltarParaFicha/{id}(id=${enderecos.ficha.id})}">
+							<button type="button" class="btn btn-danger btn-lg">Cancelar</button>
+						</a> 
+					</div>
+
+
+
+				</div>
+
+				</fieldset>
+
+				</form>
+
+
+
+
+				<h4 class="text-left">Amostras</h4>
+				<div class="form-row">
+					<div class="form-group col-md-12">
+						<div class="panel panel-default">
+							<div class="panel-body">
+								<div class="table-responsive">
+									<table class="table table-bordered">
+										<thead>
+											<tr>
+												<th>Inicial</th>
+												<th>Final</th>
+												<th>Qtd Tubitos</th>
+												<th></th>
+
+											</tr>
+										</thead>
+										<tbody>
+											<tr th:each="amostras: ${amostras}">
+												<td th:text="${amostras.numAmostraInicial}"></td>
+												<td th:text="${amostras.numAmostraFinal}"></td>
+												<td th:text="${amostras.qtdTubitos}"></td>
+
+												<td>
+													<div class="btn-group pull-right">
+
+														<a class="btn btn-sm btn-primary"
+															th:href="@{/administrativo/amostra/editarAmostra/{id}(id=${amostras.id})}"><i
+															class="fas fa-edit"></i></a> <a
+															class="delete btn btn-sm btn-warning" data-toggle="modal"
+															data-target="#modal-warning"
+															th:attr="data-target='#modal-warning'+${amostras.id }"><i
+															class="fas fa-trash"></i></a>
+													</div>
+												</td>
+
+												<div class="modal modal-warning fade in"
+													th:id="modal-warning+${amostras.id }">
+													<div class="modal-dialog">
+														<div class="modal-content">
+															<div class="modal-header">
+																<button type="button" class="close" data-dismiss="modal"
+																	aria-label="Fechar">
+																	<span aria-hidden="true">×</span>
+																</button>
+																<h5 class="modal-title">Fechar</h5>
+															</div>
+															<div class="modal-body">
+																<h3>Deseja realmente Remover?</h3>
+															</div>
+															<div class="modal-footer">
+																<button type="button" class="btn btn-outline pull-left"
+																	data-dismiss="modal">Sair</button>
+																<a type="button" class="btn btn-outline"
+																	th:href="@{/administrativo/amostra/removerAmostra/{id}(id=${amostras.id})}"><i
+																	class="fa fa-check"></i>&nbsp;Sim</a>
+															</div>
+														</div>
+													</div>
+												</div>
+
+												</td>
+
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+				<h4 class="text-left">Tratamento</h4>
+				<div class="form-row">
+					<div class="form-group col-md-12">
+						<div class="panel panel-default">
+							<div class="panel-body">
+								<div class="table-responsive">
+									<table class="table table-bordered">
+										<thead>
+											<tr>
+												<th>1 DepTrat</th>
+												<th>1 Gramas</th>
+												<th>1 tipo</th>
+												<th>2 DepTrat</th>
+												<th>2 Gramas</th>
+												<th>2 tipo</th>
+												<th>Adult Cargas</th>
+												<th>Adult tipo</th>
+												<th></th>
+
+											</tr>
+										</thead>
+										<tbody>
+											<tr th:each="tratamentos: ${tratamentos}">
+												<td th:text="${tratamentos.larv1QtdeDepTrat}"></td>
+												<td th:text="${tratamentos.larv1QtdeGramas}"></td>
+												<td th:text="${tratamentos.larv1Tipo}"></td>
+												<td th:text="${tratamentos.larv2QtdeDepTrat}"></td>
+												<td th:text="${tratamentos.larv2QtdeGramas}"></td>
+												<td th:text="${tratamentos.larv2Tipo}"></td>
+												<td th:text="${tratamentos.adultQtdeCargas}"></td>
+												<td th:text="${tratamentos.adultTipo}"></td>7
+
+												<td>
+													<div class="btn-group pull-right">
+														<a class="btn btn-sm btn-primary"
+															th:href="@{/administrativo/tratamento/editarTratamento/{id}(id=${tratamentos.id})}"><i
+															class="fas fa-edit"></i></a> <a
+															class="delete btn btn-sm btn-warning" data-toggle="modal"
+															data-target="#modal-warning"
+															th:attr="data-target='#modal-warning'+${tratamentos.id }"><i
+															class="fas fa-trash"></i></a>
+													</div>
+												</td>
+
+												<div class="modal modal-warning fade in"
+													th:id="modal-warning+${tratamentos.id }">
+													<div class="modal-dialog">
+														<div class="modal-content">
+															<div class="modal-header">
+																<button type="button" class="close" data-dismiss="modal"
+																	aria-label="Fechar">
+																	<span aria-hidden="true">×</span>
+																</button>
+																<h5 class="modal-title">Fechar</h5>
+															</div>
+															<div class="modal-body">
+																<h3>Deseja realmente Remover?</h3>
+															</div>
+															<div class="modal-footer">
+																<button type="button" class="btn btn-outline pull-left"
+																	data-dismiss="modal">Sair</button>
+																<a type="button" class="btn btn-outline"
+																	th:href="@{/administrativo/tratamento/removerTratamento/{id}(id=${tratamentos.id})}"><i
+																	class="fa fa-check"></i>&nbsp;Sim</a>
+															</div>
+														</div>
+													</div>
+												</div>
+
+												</td>
+
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<h4 class="text-left">Depósitos</h4>
+				<div class="form-row">
+					<div class="form-group col-md-12">
+						<div class="panel panel-default">
+							<div class="panel-body">
+								<div class="table-responsive">
+									<table class="table table-bordered">
+										<thead>
+											<tr>
+												<th>A1</th>
+												<th>A2</th>
+												<th>B</th>
+												<th>C</th>
+												<th>D1</th>
+												<th>D2</th>
+												<th>E</th>
+												<th></th>
+
+											</tr>
+										</thead>
+										<tbody>
+											<tr th:each="depositos: ${depositos}">
+												<td th:text="${depositos.a1}"></td>
+												<td th:text="${depositos.a2}"></td>
+												<td th:text="${depositos.b}"></td>
+												<td th:text="${depositos.c}"></td>
+												<td th:text="${depositos.d1}"></td>
+												<td th:text="${depositos.d2}"></td>
+												<td th:text="${depositos.e}"></td>
+
+												<td>
+													<div class="btn-group pull-right">
+														<a class="btn btn-sm btn-primary"
+															th:href="@{/administrativo/depositos/editarDepositos/{id}(id=${depositos.id})}"><i
+															class="fas fa-edit"></i></a> <a
+															class="delete btn btn-sm btn-warning" data-toggle="modal"
+															data-target="#modal-warning"
+															th:attr="data-target='#modal-warning'+${depositos.id }"><i
+															class="fas fa-trash"></i></a>
+													</div>
+												</td>
+
+												<div class="modal modal-warning fade in"
+													th:id="modal-warning+${depositos.id }">
+													<div class="modal-dialog">
+														<div class="modal-content">
+															<div class="modal-header">
+																<button type="button" class="close" data-dismiss="modal"
+																	aria-label="Fechar">
+																	<span aria-hidden="true">×</span>
+																</button>
+																<h5 class="modal-title">Fechar</h5>
+															</div>
+															<div class="modal-body">
+																<h3>Deseja realmente Remover?</h3>
+															</div>
+															<div class="modal-footer">
+																<button type="button" class="btn btn-outline pull-left"
+																	data-dismiss="modal">Sair</button>
+																<a type="button" class="btn btn-outline"
+																	th:href="@{/administrativo/depositos/removerDepositos/{id}(id=${depositos.id})}"><i
+																	class="fa fa-check"></i>&nbsp;Sim</a>
+															</div>
+														</div>
+													</div>
+												</div>
+
+												</td>
+
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+
+			</div>
+		</div>
+		</div>
+
+		</div>
+		<!-- /.container-fluid -->
+	</section>
+
+</body>
+
+</html>

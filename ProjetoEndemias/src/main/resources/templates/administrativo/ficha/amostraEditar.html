@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" layout:decorate="~{fragments/layout}">
+
+<head>
+<title>PhoenixCommerce 1.0</title>
+<meta charset="utf-8">
+
+</head>
+
+<body>
+
+
+	<section class="layout-content" layout:fragment="corpo">
+		<!-- Begin Page Content------------------------------------------------------------------------------->
+		<div class="container-fluid">
+
+			<div>
+
+				<div class="container">
+					<div class="form-row">
+
+
+						<form class="signup-form" th:object="${amostra}"
+							th:action="@{/administrativo/amostra/salvarAmostra}"
+							method="POST" style="margin: 10px">
+
+							<fieldset>
+								<h1 class="text-center">Cadastro de Logradouros</h1>
+								<br> <br>
+								<div class="row">
+									<!--  <div class="form-group col-md-6">
+									<div class="" th:if="${#fields.hasAnyErrors()}">
+										<div th:each="detailedError : ${#fields.detailedErrors()}">
+											<span th:text="${detailedError.message}"></span>
+										</div>
+									</div>
+								</div>-->
+									<div class="form-group col-md-12">
+										<div class="invisible">
+											<label>Id</label> <input type="text" class="form-input"
+												id="id" th:field="*{id}" readOnly="readonly" />
+										</div>
+									</div>
+
+									<div class="form-group col-md-12">
+
+										<label>Tubitos</label> <input type="number" class="form-input"
+											th:field="*{qtdTubitos}" autofocus="autofocus"
+											placeholder="Informe a quantidade de tubitos" maxlength="50" />
+									</div>
+
+									<div class="form-group col-md-12">
+										<label>Número da Amostra Inicial</label> <input type="number"
+											class="form-input" th:field="*{numAmostraInicial}"
+											autofocus="autofocus"
+											placeholder="Informe o número da amostra inicial"
+											maxlength="50" />
+									</div>
+
+									<div class="form-group col-md-12">
+										<label>Número da Amostra Final</label> <input type="number"
+											class="form-input" th:field="*{numAmostraFinal}"
+											autofocus="autofocus"
+											placeholder="Informe o número da amostra final"
+											maxlength="50" />
+									</div>
+
+
+									<div class="form-group col-md-12">
+										<div class="invisible">
+											<input type="text" class="form-input" id="id2"
+												th:field="*{enderecos}" readOnly="readonly" />
+										</div>
+									</div>
+
+
+
+									<!-- Botões diversos -->
+									<div class="form-group">
+										<input type="submit" class="btn btn-primary btn-lg"
+											value="Salvar Amostra" th:value="salvarAmostra" /> <a
+											th:href="@{/administrativo/enderecos/editarEnderecos/{id}(id=${amostra.enderecos.id})}">
+											<button type="button" class="btn btn-danger btn-lg" >Cancelar</button>
+										
+										</a>
+									</div>
+
+
+
+								</div>
+
+							</fieldset>
+
+
+
+
+
+						</form>
+
+					</div>
+				</div>
+
+			</div>
+			<!-- /.container-fluid -->
+	</section>
+
+</body>
+
+</html>

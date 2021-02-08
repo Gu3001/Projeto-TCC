@@ -1,9 +1,19 @@
 package com.dev.comapp.controllers;
 
+import java.io.ByteArrayOutputStream;
+import java.io.OutputStream;
+import java.sql.Connection;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Optional;
+import java.util.ResourceBundle;
 
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletResponse;
+import javax.sql.DataSource;
+import javax.swing.JOptionPane;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,8 +21,11 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.dev.comapp.Conexao;
 import com.dev.comapp.models.Amostra;
 import com.dev.comapp.models.Depositos;
 import com.dev.comapp.models.Enderecos;
@@ -27,8 +40,26 @@ import com.dev.comapp.repository.FuncionarioRepository;
 import com.dev.comapp.repository.TratamentoRepository;
 
 
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.export.JRPdfExporter;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.export.SimpleExporterInput;
+import net.sf.jasperreports.export.SimpleOutputStreamExporterOutput;
+import net.sf.jasperreports.view.JasperViewer;
+import java.io.InputStream;
+
+
 @Controller
-public class FichaController {
+public class FichaController{
+	
+	
 	private List<Enderecos> listaEnderecos = new ArrayList<Enderecos>();
 	private List<Amostra> listaAmostra = new ArrayList<Amostra>();
 	@Autowired
@@ -45,6 +76,8 @@ public class FichaController {
 	private DepositosRepository depositosRepository;
 	@Autowired
 	private TratamentoRepository tratamentoRepository;
+	@Autowired
+	private DataSource dataSource;
 	
 	private String controleSalvar = "nadaConsta";
 	

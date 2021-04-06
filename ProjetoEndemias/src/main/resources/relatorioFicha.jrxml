@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report1" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="b55de463-9916-495c-bbf3-54b27cbc4d2e">
-	<property name="ireport.zoom" value="1.5000000000000198"/>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report1" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isFloatColumnFooter="true" uuid="b55de463-9916-495c-bbf3-54b27cbc4d2e">
+	<property name="ireport.zoom" value="1.3636363636363835"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<parameter name="id_da_ficha" class="java.lang.Long"/>
@@ -14,7 +14,6 @@
      ficha."ficha_salva" AS ficha_ficha_salva,
      ficha."data_atividade" AS ficha_data_atividade,
      ficha."zona" AS ficha_zona,
-
      enderecos."complemento" AS enderecos_complemento,
      enderecos."endereco" AS enderecos_endereco,
      enderecos."hora_entrada" AS enderecos_hora_entrada,
@@ -28,28 +27,14 @@
      enderecos."tipo_imovel" AS enderecos_tipo_imovel,
      enderecos."visita" AS enderecos_visita,
      enderecos."ficha_id" AS enderecos_ficha_id,
-
      ficha."cidade_id" AS ficha_cidade_id,
      ficha."funcionario_id" AS ficha_funcionario_id,
-
-     tratametno."adult_qtde_cargas" AS tratametno_adult_qtde_cargas,
-     tratametno."adult_tipo" AS tratametno_adult_tipo,
-     tratametno."larv1qtde_dep_trat" AS tratametno_larv1qtde_dep_trat,
-     tratametno."larv1tipo" AS tratametno_larv1tipo,
-     tratametno."larv1qtde_gramas" AS tratametno_larv1qtde_gramas,
-     tratametno."larv2qtde_dep_trat" AS tratametno_larv2qtde_dep_trat,
-     tratametno."larv2qtde_gramas" AS tratametno_larv2qtde_gramas,
-     tratametno."larv2tipo" AS tratametno_larv2tipo,
-     tratametno."enderecos_id" AS tratametno_enderecos_id,
-
      amostra."num_amostra_final" AS amostra_num_amostra_final,
      amostra."num_amostra_inicial" AS amostra_num_amostra_inicial,
      amostra."qtd_tubitos" AS amostra_qtd_tubitos,
      amostra."enderecos_id" AS amostra_enderecos_id,
-
      cidade."nome" AS cidade_nome,
      cidade."estado_id" AS cidade_estado_id,
-
      depositos."a1" AS depositos_a1,
      depositos."a2" AS depositos_a2,
      depositos."b" AS depositos_b,
@@ -59,9 +44,18 @@
      depositos."eliminados" AS depositos_eliminados,
      depositos."e" AS depositos_e,
      depositos."enderecos_id" AS depositos_enderecos_id,
-
-ficha."id" AS ficha_id,
-     funcionario."nome" AS funcionario_nome
+     ficha."id" AS ficha_id,
+     funcionario."nome" AS funcionario_nome,
+     enderecos."imv_inspecionado" AS enderecos_imv_inspecionado,
+     ficha."atividade" AS ficha_atividade,
+     tratametno."adult_qtde_cargas" AS tratametno_adult_qtde_cargas,
+     tratametno."adult_tipo" AS tratametno_adult_tipo,
+     tratametno."larv1qtde_dep_trat" AS tratametno_larv1qtde_dep_trat,
+     tratametno."larv1qtde_gramas" AS tratametno_larv1qtde_gramas,
+     tratametno."larv1tipo" AS tratametno_larv1tipo,
+     tratametno."larv2qtde_dep_trat" AS tratametno_larv2qtde_dep_trat,
+     tratametno."larv2qtde_gramas" AS tratametno_larv2qtde_gramas,
+     tratametno."larv2tipo" AS tratametno_larv2tipo
 FROM
      "public"."enderecos" enderecos INNER JOIN "public"."ficha" ficha ON enderecos."ficha_id" = ficha."id"
      INNER JOIN "public"."tratametno" tratametno ON enderecos."id" = tratametno."enderecos_id"
@@ -69,8 +63,8 @@ FROM
      INNER JOIN "public"."depositos" depositos ON enderecos."id" = depositos."enderecos_id"
      INNER JOIN "cidade" cidade ON ficha."cidade_id" = cidade."id"
      INNER JOIN "funcionario" funcionario ON ficha."funcionario_id" = funcionario."id"
-
-WHERE ficha."id" = $P{id_da_ficha}]]>
+WHERE
+     ficha."id" = $P{id_da_ficha}]]>
 	</queryString>
 	<field name="ficha_categoria" class="java.lang.String"/>
 	<field name="ficha_ciclo_ano" class="java.lang.String"/>
@@ -95,15 +89,6 @@ WHERE ficha."id" = $P{id_da_ficha}]]>
 	<field name="enderecos_ficha_id" class="java.lang.Long"/>
 	<field name="ficha_cidade_id" class="java.lang.Long"/>
 	<field name="ficha_funcionario_id" class="java.lang.Long"/>
-	<field name="tratametno_adult_qtde_cargas" class="java.lang.Integer"/>
-	<field name="tratametno_adult_tipo" class="java.lang.Integer"/>
-	<field name="tratametno_larv1qtde_dep_trat" class="java.lang.Integer"/>
-	<field name="tratametno_larv1tipo" class="java.lang.Integer"/>
-	<field name="tratametno_larv1qtde_gramas" class="java.lang.Integer"/>
-	<field name="tratametno_larv2qtde_dep_trat" class="java.lang.Integer"/>
-	<field name="tratametno_larv2qtde_gramas" class="java.lang.Integer"/>
-	<field name="tratametno_larv2tipo" class="java.lang.Integer"/>
-	<field name="tratametno_enderecos_id" class="java.lang.Long"/>
 	<field name="amostra_num_amostra_final" class="java.lang.Integer"/>
 	<field name="amostra_num_amostra_inicial" class="java.lang.Integer"/>
 	<field name="amostra_qtd_tubitos" class="java.lang.Integer"/>
@@ -121,6 +106,40 @@ WHERE ficha."id" = $P{id_da_ficha}]]>
 	<field name="depositos_enderecos_id" class="java.lang.Long"/>
 	<field name="ficha_id" class="java.lang.Long"/>
 	<field name="funcionario_nome" class="java.lang.String"/>
+	<field name="enderecos_imv_inspecionado" class="java.lang.String"/>
+	<field name="ficha_atividade" class="java.lang.String"/>
+	<field name="tratametno_adult_qtde_cargas" class="java.lang.Long"/>
+	<field name="tratametno_adult_tipo" class="java.lang.String"/>
+	<field name="tratametno_larv1qtde_dep_trat" class="java.lang.Long"/>
+	<field name="tratametno_larv1qtde_gramas" class="java.lang.Long"/>
+	<field name="tratametno_larv1tipo" class="java.lang.String"/>
+	<field name="tratametno_larv2qtde_dep_trat" class="java.lang.Long"/>
+	<field name="tratametno_larv2qtde_gramas" class="java.lang.Long"/>
+	<field name="tratametno_larv2tipo" class="java.lang.String"/>
+	<variable name="totalA1" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{depositos_a1}]]></variableExpression>
+	</variable>
+	<variable name="totalA2" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{depositos_a2}]]></variableExpression>
+	</variable>
+	<variable name="totalB" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{depositos_b}]]></variableExpression>
+	</variable>
+	<variable name="totalC" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{depositos_c}]]></variableExpression>
+	</variable>
+	<variable name="totalD1" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{depositos_d1}]]></variableExpression>
+	</variable>
+	<variable name="totalD2" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{depositos_d2}]]></variableExpression>
+	</variable>
+	<variable name="totalE" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{depositos_e}]]></variableExpression>
+	</variable>
+	<variable name="totalEliminados" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{depositos_eliminados}]]></variableExpression>
+	</variable>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -153,42 +172,45 @@ WHERE ficha."id" = $P{id_da_ficha}]]>
 	</title>
 	<pageHeader>
 		<band height="73" splitType="Stretch">
-			<textField>
+			<rectangle>
+				<reportElement mode="Transparent" x="-1" y="-39" width="802" height="103" uuid="653df18b-b0ab-4ec9-8954-fdbecf1445cb"/>
+			</rectangle>
+			<textField isBlankWhenNull="true">
 				<reportElement x="28" y="13" width="100" height="20" uuid="d93da06e-6713-4bff-a345-ef5568692732"/>
 				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{cidade_nome}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField isBlankWhenNull="true">
 				<reportElement x="147" y="13" width="121" height="20" uuid="c4a475b6-4013-4038-873f-070f3c99abc1"/>
 				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{ficha_codigo}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField isBlankWhenNull="true">
 				<reportElement x="279" y="13" width="100" height="20" uuid="10c1726b-68d4-4d13-a354-0f8915877ffc"/>
 				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{ficha_categoria}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField isBlankWhenNull="true">
 				<reportElement x="419" y="13" width="100" height="20" uuid="0e762956-b132-412f-ad04-47dc40122aee"/>
 				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{ficha_zona}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField isBlankWhenNull="true">
 				<reportElement x="557" y="13" width="100" height="20" uuid="54d8cb61-5b59-4005-8d7c-e544eeabbb73"/>
 				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{ficha_tipo}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField isBlankWhenNull="true">
 				<reportElement x="689" y="13" width="100" height="20" uuid="dd00d329-8eaa-4741-ada7-8c6754715ee0"/>
 				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{ficha_conclusao}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField isBlankWhenNull="true">
 				<reportElement x="29" y="47" width="99" height="20" uuid="675a6bb0-f6fa-4614-b3b8-005a4b2310bb"/>
 				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{ficha_data_atividade}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField isBlankWhenNull="true">
 				<reportElement x="147" y="47" width="111" height="20" uuid="555d4994-666b-4f06-a01a-c5d9536adf9d"/>
 				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{ficha_ciclo_ano}]]></textFieldExpression>
@@ -258,16 +280,24 @@ WHERE ficha."id" = $P{id_da_ficha}]]>
 			<rectangle>
 				<reportElement mode="Transparent" x="-248" y="20" width="100" height="33" uuid="6e21e4cd-a747-4f87-b4ab-ad0440f95142"/>
 			</rectangle>
-			<rectangle>
-				<reportElement mode="Transparent" x="0" y="-41" width="802" height="105" uuid="653df18b-b0ab-4ec9-8954-fdbecf1445cb"/>
-			</rectangle>
 			<staticText>
-				<reportElement x="222" y="44" width="315" height="20" uuid="2b5beb3b-b709-4ab0-8235-e259004cdf0a"/>
+				<reportElement x="258" y="44" width="279" height="20" uuid="2b5beb3b-b709-4ab0-8235-e259004cdf0a"/>
 				<textElement textAlignment="Center">
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[PESQUISA ENTMOLÓGICA / TRATAMENTO]]></text>
 			</staticText>
+			<staticText>
+				<reportElement x="560" y="33" width="97" height="14" uuid="3b439069-43ba-4b85-94b1-22a6d8f732bc"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Atividade]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="559" y="47" width="240" height="17" uuid="e16b3b30-79c2-430a-b353-d96c5fe4e381"/>
+				<textFieldExpression><![CDATA[$F{ficha_atividade}]]></textFieldExpression>
+			</textField>
 		</band>
 	</pageHeader>
 	<columnHeader>
@@ -715,7 +745,9 @@ WHERE ficha."id" = $P{id_da_ficha}]]>
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement x="201" y="0" width="22" height="20" uuid="3f34bd12-8fe1-469d-8343-485188ff7a85"/>
-				<textElement textAlignment="Center"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{enderecos_numero}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
@@ -733,10 +765,10 @@ WHERE ficha."id" = $P{id_da_ficha}]]>
 				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{enderecos_tipo_imovel}]]></textFieldExpression>
 			</textField>
-			<textField isBlankWhenNull="true">
+			<textField pattern="HH:mm" isBlankWhenNull="true">
 				<reportElement x="295" y="0" width="43" height="20" uuid="e2d2758f-4a8d-4430-9a76-fed39ddcb907"/>
 				<textElement textAlignment="Center">
-					<font size="6"/>
+					<font size="10"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{enderecos_hora_entrada}]]></textFieldExpression>
 			</textField>
@@ -1084,15 +1116,119 @@ WHERE ficha."id" = $P{id_da_ficha}]]>
 			<line>
 				<reportElement x="-1" y="20" width="763" height="1" uuid="a8db36ef-c760-465e-99dc-f2c3f301730f"/>
 			</line>
+			<textField>
+				<reportElement x="504" y="0" width="14" height="20" uuid="775a0814-2d19-4672-89bc-ad0088f405f4"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{enderecos_imv_inspecionado}]]></textFieldExpression>
+			</textField>
 		</band>
 	</detail>
 	<columnFooter>
-		<band height="47" splitType="Stretch"/>
+		<band height="21" splitType="Stretch">
+			<rectangle>
+				<reportElement mode="Transparent" x="0" y="2" width="764" height="19" uuid="f5f8a112-dfea-4217-b5ab-3b095d387c2d"/>
+			</rectangle>
+			<textField isBlankWhenNull="true">
+				<reportElement x="379" y="0" width="14" height="20" uuid="1bda0f96-8b3f-42a3-b83c-c97c2a9c31b0"/>
+				<textFieldExpression><![CDATA[$V{totalA1}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="394" y="0" width="15" height="20" uuid="0997a1c5-2ce0-4245-bd2d-44ae5c180d27"/>
+				<textFieldExpression><![CDATA[$V{totalA2}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="409" y="1" width="15" height="19" uuid="a74f357f-b765-4efd-a8e5-bd2a1e7d7076"/>
+				<textFieldExpression><![CDATA[$V{totalB}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="424" y="1" width="15" height="19" uuid="dd5df36f-7362-404d-b3f5-8db0538e66e6"/>
+				<textFieldExpression><![CDATA[$V{totalC}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="438" y="1" width="16" height="20" uuid="63cd719a-faf2-43f7-b50e-3b4ff5926a44"/>
+				<textFieldExpression><![CDATA[$V{totalD1}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="455" y="1" width="15" height="20" uuid="1d2593bc-45b8-4b86-ad67-66d3f23e9dd1"/>
+				<textFieldExpression><![CDATA[$V{totalD2}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="470" y="1" width="17" height="20" uuid="2ba1136b-1daf-49e9-905f-90cce10d50c2"/>
+				<textFieldExpression><![CDATA[$V{totalE}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="487" y="1" width="16" height="20" uuid="0d18ac9d-9dbc-45a9-aae2-cdf743940b01"/>
+				<textFieldExpression><![CDATA[$V{totalEliminados}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="3" y="4" width="99" height="13" uuid="1f0e3a4f-8115-4b8f-a5f7-1ba593500093"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Totais:]]></text>
+			</staticText>
+			<line>
+				<reportElement x="377" y="2" width="1" height="19" uuid="1cdaee6e-0ba3-4fbe-a238-ba790b942139"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="392" y="2" width="1" height="19" uuid="70ef80f9-b66f-4ec1-9b70-e765f6d7165d"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="408" y="2" width="1" height="19" uuid="4723f17e-344b-4956-94a4-718dd9459a55"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="424" y="2" width="1" height="19" uuid="5807b227-f2fc-46c8-bcf3-a570035cc434"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="438" y="2" width="1" height="19" uuid="83a66223-049b-4d14-9a58-0aa150eab4a8"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="455" y="2" width="1" height="19" uuid="e1c61202-5b4d-4f3e-a761-6a3601118e88"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="470" y="2" width="1" height="19" uuid="0e186fc6-18c7-44b4-94f1-13c0cee898f2"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="487" y="2" width="1" height="19" uuid="1665d66b-3df3-4a40-baf7-436b71d0d40d"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="503" y="2" width="1" height="19" uuid="10a53ba9-82c1-4e83-841b-8c28e49af22c"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+		</band>
 	</columnFooter>
 	<pageFooter>
 		<band height="54" splitType="Stretch"/>
 	</pageFooter>
 	<summary>
-		<band height="42" splitType="Stretch"/>
+		<band splitType="Stretch"/>
 	</summary>
 </jasperReport>

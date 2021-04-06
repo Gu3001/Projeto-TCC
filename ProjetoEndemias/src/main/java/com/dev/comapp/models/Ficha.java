@@ -29,6 +29,7 @@ public class Ficha implements Serializable {
 	private String categoria;
 	private String zona;
 	private String tipo;
+	private String atividade;
 	private String conclusao;
 	private Date dataAtividade = new Date();
 	private String cicloAno;
@@ -52,12 +53,13 @@ public class Ficha implements Serializable {
 	public void setCodigo(Integer codigo) {
 		this.codigo = codigo;
 	}
-//	public String getNome() {
-//		return nome;
-//	}
-//	public void setNome(String nome) {
-//		this.nome = nome;
-//	}
+	
+	public String getAtividade() {
+		return atividade;
+	}
+	public void setAtividade(String atividade) {
+		this.atividade = atividade;
+	}
 	public Cidade getCidade() {
 		return cidade;
 	}

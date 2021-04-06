@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report1" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="b55de463-9916-495c-bbf3-54b27cbc4d2e">
+	<property name="ireport.zoom" value="1.3636363636363844"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[SELECT
+     ficha."categoria" AS ficha_categoria,
+     ficha."ciclo_ano" AS ficha_ciclo_ano,
+     ficha."codigo" AS ficha_codigo,
+     ficha."conclusao" AS ficha_conclusao,
+     ficha."tipo" AS ficha_tipo,
+     ficha."ficha_salva" AS ficha_ficha_salva,
+     ficha."data_atividade" AS ficha_data_atividade,
+     ficha."zona" AS ficha_zona,
+     ficha."cidade_id" AS ficha_cidade_id,
+     ficha."funcionario_id" AS ficha_funcionario_id,
+     cidade."nome" AS cidade_nome,
+     cidade."estado_id" AS cidade_estado_id,
+     ficha."id" AS ficha_id,
+     funcionario."nome" AS funcionario_nome
+FROM
+     "public"."ficha" ficha
+     INNER JOIN "cidade" cidade ON ficha."cidade_id" = cidade."id"
+     INNER JOIN "funcionario" funcionario ON ficha."funcionario_id" = funcionario."id"]]>
+	</queryString>
+	<field name="ficha_categoria" class="java.lang.String"/>
+	<field name="ficha_ciclo_ano" class="java.lang.String"/>
+	<field name="ficha_codigo" class="java.lang.Integer"/>
+	<field name="ficha_conclusao" class="java.lang.String"/>
+	<field name="ficha_tipo" class="java.lang.String"/>
+	<field name="ficha_ficha_salva" class="java.lang.Boolean"/>
+	<field name="ficha_data_atividade" class="java.sql.Timestamp"/>
+	<field name="ficha_zona" class="java.lang.String"/>
+	<field name="ficha_cidade_id" class="java.lang.Long"/>
+	<field name="ficha_funcionario_id" class="java.lang.Long"/>
+	<field name="cidade_nome" class="java.lang.String"/>
+	<field name="cidade_estado_id" class="java.lang.Long"/>
+	<field name="ficha_id" class="java.lang.Long"/>
+	<field name="funcionario_nome" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="65" splitType="Stretch">
+			<staticText>
+				<reportElement x="172" y="0" width="315" height="20" uuid="730c0a16-103d-46d5-97f1-1f573d6302d3"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[PROGRAMA NACIONAL DE CONTROLE DA DENGUE - PNCD]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="172" y="20" width="325" height="45" uuid="62f5376f-29d4-4dab-86c1-c3461ead6263"/>
+				<textElement textAlignment="Center">
+					<font size="25" isBold="true"/>
+				</textElement>
+				<text><![CDATA[FICHAS]]></text>
+			</staticText>
+			<image>
+				<reportElement x="45" y="0" width="66" height="41" uuid="53a8336f-ece4-49d3-b96e-48fa0c5a9f3f"/>
+				<imageExpression><![CDATA["C:\\Users\\Luiz Gustavo\\Pictures\\Imagens do Report\\sus-logo.png"]]></imageExpression>
+			</image>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="697" y="1" width="100" height="20" uuid="aac689c6-5a83-43d0-9e99-ca0827b2f926"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="22" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="21" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="53" height="20" uuid="cd38fe0d-22ef-44d2-b8ad-e5e2724b99ef"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[CÓD.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="153" y="0" width="100" height="20" uuid="eb7a1b97-6641-4a1c-9829-5e4ae8454d0e"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[CATEGORIA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="253" y="0" width="100" height="20" uuid="c6cc810b-8b86-470f-bdfe-9f571090bfd3"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[CICLO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="353" y="0" width="100" height="20" uuid="2d6129c2-4cda-4bf5-94c9-fd87abc7efdc"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[SALVO?]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="453" y="0" width="100" height="20" uuid="c14e5d33-c3cd-49fa-a626-9f2e7b0a52ed"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[ZONA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="553" y="0" width="100" height="20" uuid="239158be-aa9c-4570-b704-1a7b24373cd6"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[CIDADE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="653" y="0" width="80" height="20" uuid="6288603a-e62f-440f-80e7-5969611cbb7a"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[FUNCIONARIO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="53" y="0" width="100" height="20" uuid="c9396e18-7e13-4da2-9442-2daa0b925ce9"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[DATA]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="24" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="3" width="53" height="20" uuid="4a353fe5-76ae-449e-9ae3-e535c6f361de"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{ficha_id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="153" y="4" width="100" height="20" uuid="5b38b607-6d7f-4dd6-b9a7-51e4c71e8dd1"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{ficha_categoria}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="253" y="4" width="100" height="20" uuid="692bf29d-b589-42a7-b8b6-5c79b9e1b82e"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{ficha_ciclo_ano}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="353" y="3" width="100" height="20" uuid="1da745c0-d29c-42f6-8f30-208cafd9f4d2"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{ficha_ficha_salva} == "True" ? "Sim" : "Não"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="453" y="3" width="100" height="20" uuid="d00f6b69-0b39-4165-a216-b85fadcab804"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{ficha_zona}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="553" y="0" width="100" height="20" uuid="e9265801-32a7-4ae5-94fb-849a79eb66db"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{cidade_nome}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="653" y="0" width="80" height="20" uuid="e47e1fa1-7ee2-4f5a-a4ba-c6e8687af045"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{funcionario_nome}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="53" y="5" width="100" height="18" uuid="b04b080a-dff2-40e1-a601-1cf876918eca"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{ficha_data_atividade}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="21" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

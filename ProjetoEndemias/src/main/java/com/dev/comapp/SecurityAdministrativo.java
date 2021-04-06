@@ -47,30 +47,36 @@ public class SecurityAdministrativo extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests().antMatchers("/administrativo").hasAnyAuthority("Administrador","Funcionario").
+		http.authorizeRequests().
 		antMatchers(
-				
+				"/",
+				"/administrativo",
 				"/administrativo/estado/adicionarEstado",
 				"/administrativo/estado/estados",
 				"/administrativo/cidade/adicionarCidade",
 				"/administrativo/cidade/cidades",
+				"/administrativo/permissoesFuncionario/adicionarPermFunc",
+				"/administrativo/permissoesFuncionario/permissoesFuncionarios"
+		
+		).hasAnyAuthority("Administrador","Funcionario").
+		antMatchers(
+				"/administrativo/funcionario/imprimirFuncionario",
 				"/administrativo/funcionario/adicionarFuncionario",
 				"/administrativo/funcionario/funcionarios",
 				"/administrativo/permissoesFuncionario/adicionarPermFunc",
 				"/administrativo/permissoesFuncionario/permissoesFuncionarios",
 				"/administrativo/papel/adicionarPapeis",
 				"/administrativo/papel/adicionarFicha",
-				"/administrativo/papel/papeis",
-				"/administrativo/localidade/adicionarLocalidade",
-				"/administrativo/localidade/localidades",
-				"/administrativo/localidade/fichas"
-				
-				).hasAnyAuthority("Administrador").and().formLogin()
-				.loginPage("/login").permitAll().and().logout()
-				.logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/login").and()
-				.exceptionHandling().accessDeniedPage("/negado");
+				"/administrativo/papel/papeis"
+
+		
+		).hasAnyAuthority("Administrador")
+			.and().formLogin().loginPage("/login").permitAll()
+			.and().logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/login")
+			.and().exceptionHandling().accessDeniedPage("/negado");
 
 	}
+	
 //	@Override
 //	protected void configure(HttpSecurity http) throws Exception {
 //		http.authorizeRequests().antMatchers("/login").permitAll()

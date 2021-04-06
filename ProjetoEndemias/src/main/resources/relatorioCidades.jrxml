@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="relatórioCidades" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="2571c33e-9a7a-4502-8840-c372c66b849b">
+	<property name="ireport.zoom" value="1.4641000000000006"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[SELECT
+     cidade."nome" AS cidade_nome,
+     cidade."id" AS cidade_id,
+     estado."nome" AS estado_nome,
+     estado."sigla" AS estado_sigla
+FROM
+     "public"."cidade" cidade INNER JOIN "public"."estado" estado ON cidade."estado_id" = estado."id"]]>
+	</queryString>
+	<field name="cidade_nome" class="java.lang.String"/>
+	<field name="cidade_id" class="java.lang.Long"/>
+	<field name="estado_nome" class="java.lang.String"/>
+	<field name="estado_sigla" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="43" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="555" height="43" uuid="4165fd18-d020-4244-8255-a4ecd0642188"/>
+				<textElement textAlignment="Center">
+					<font size="20"/>
+				</textElement>
+				<text><![CDATA[Relatório de Cidades Cadastradas]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="6" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="24" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="2" width="93" height="20" backcolor="#C0C0C0" uuid="a20505f9-6093-4898-952b-86acbd485226"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[CÓD.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="93" y="2" width="212" height="20" backcolor="#C0C0C0" uuid="5e66d7e3-569c-4ab5-8a81-80f1389acb6d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[CIDADE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="455" y="2" width="100" height="20" backcolor="#C0C0C0" uuid="38033b8a-4b0f-423c-b8b8-0f2029efe763"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[SIGLA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="305" y="2" width="150" height="20" backcolor="#C0C0C0" uuid="463d224d-3dac-4375-98b0-cd71d9f72b70"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[ESTADO]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="23" splitType="Stretch">
+			<rectangle>
+				<reportElement mode="Transparent" x="0" y="1" width="555" height="20" uuid="22e3f2d7-5b43-47a5-a478-5c167096809e"/>
+			</rectangle>
+			<textField>
+				<reportElement x="0" y="1" width="93" height="20" uuid="20558c01-2e77-4ecf-9aa4-ae7488aad088"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{cidade_id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="93" y="1" width="212" height="20" uuid="1bfedc4e-8cb0-4b27-91c6-abe0c3e2160c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{cidade_nome}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="455" y="1" width="100" height="20" uuid="29e3bc14-87d3-482f-ace9-3e327e34fec0"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{estado_sigla}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="305" y="1" width="150" height="20" uuid="019c1a44-79b6-465b-95c7-e8d310175f6b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{estado_nome}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="11" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="10" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

@@ -101,6 +101,19 @@
 										autofocus="autofocus" placeholder="Informe o Ciclo/Ano."
 										maxlength="50" />
 								</div>
+								
+								<div class="form-group col-md-12">
+									<label for="exampleFormControlSelect4">Atividade</label> <select
+										class="form-input" id="exampleFormControlSelect4"
+										th:field="*{atividade}">
+										<option value="Levantamento de Indice">Levantamento de Indice</option>
+										<option value="Levantamento de Indice + Trat">Levantamento de Indice + Tratamento</option>
+										<option value="Ponto Estrategico">Ponto Estrategico</option>
+										<option value="Tratamento">Tratamento</option>
+										<option value="Delimitação de Foco">Delimitação de Foco</option>
+										<option value="Pesquisa Vetorial Especial">Pesquisa Vetorial Especial</option>
+									</select>
+								</div>
 
 								<!-- itensEntrada abaixo -->
 								<hr />
@@ -133,8 +146,17 @@
 
 									<div class="form-group col-md-2">
 										<label>Lado</label> <input type="text" class="form-input"
-											th:field="*{segmentoAnterior}" autofocus="autofocus"
+											th:field="*{lado}" autofocus="autofocus"
 											placeholder="Informe o lado" maxlength="50" />
+									</div>
+									
+									<div class="form-group col-md-2">
+										<label for="exampleFormControlSelect9">Imóvel Inspecionado?</label> <select
+											class="form-input" id="exampleFormControlSelect9"
+											th:field="*{imvInspecionado}">
+											<option value="">Não</option>
+											<option value="x">Sim</option>
+										</select>
 									</div>
 
 									<div class="form-group col-md-6">
@@ -156,7 +178,7 @@
 									</div>
 
 									<div class="form-group col-md-2">
-										<label>Complemento</label> <input type="text"
+										<lafbel>Complemento</label> <input type="text"
 											class="form-input" th:field="*{complemento}"
 											autofocus="autofocus" placeholder="Informe o complemento"
 											maxlength="50" />
@@ -371,7 +393,7 @@
 											<!-- Botão para acionar modal -->
 											<button type="button" class="btn btn-primary"
 												data-toggle="modal" data-target="#tratamento">
-												Tratamento</button>
+												Tratamento </button>
 
 											<!-- Modal -->
 											<div class="modal fade" id="tratamento" tabindex="-1"
@@ -396,7 +418,7 @@
 
 														<div class="form-group col-md-12">
 															<label>Tipo</label> <input
-																type="number" class="form-input" th:field="*{larv1Tipo}"
+																type="text" class="form-input" th:field="*{larv1Tipo}"
 																autofocus="autofocus" placeholder="Informe o tipo de Larvicida1"
 																maxlength="50" />
 														</div>
@@ -421,7 +443,7 @@
 
 														<div class="form-group col-md-12">
 															<label>Tipo</label> <input
-																type="number" class="form-input" th:field="*{larv2Tipo}"
+																type="text" class="form-input" th:field="*{larv2Tipo}"
 																autofocus="autofocus" placeholder="Informe o tipo de Larvicida2"
 																maxlength="50" />
 														</div>
@@ -446,7 +468,7 @@
 
 														<div class="form-group col-md-12">
 															<label>Tipo</label> <input
-																type="number" class="form-input" th:field="*{adultTipo}"
+																type="text" class="form-input" th:field="*{adultTipo}"
 																autofocus="autofocus" placeholder="Informe o tipo de adulticida"
 																maxlength="50" />
 														</div>

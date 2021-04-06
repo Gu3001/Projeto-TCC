@@ -37,6 +37,7 @@ public class Enderecos implements Serializable {
 	private String visita;
 	private String pendencia;
 	private String imvTrat;
+	private String imvInspecionado;
 	
 	@ManyToOne
 	private Ficha ficha;
@@ -49,6 +50,12 @@ public class Enderecos implements Serializable {
 	}
 	
 
+	public String getImvInspecionado() {
+		return imvInspecionado;
+	}
+	public void setImvInspecionado(String imvInspecionado) {
+		this.imvInspecionado = imvInspecionado;
+	}
 	public String getEndereco() {
 		return endereco;
 	}

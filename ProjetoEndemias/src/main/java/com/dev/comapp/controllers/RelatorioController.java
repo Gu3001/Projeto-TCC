@@ -57,7 +57,7 @@ public class RelatorioController implements Serializable{
 						Conexao.getConection());
 				
 				response.setContentType("application/pdf");
-			    response.setHeader("Content-disposition", "attachement; filename=\"Relatório de Ficha.pdf\"");
+			    response.setHeader("Content-disposition", "inline; filename=\"Relatório de Ficha.pdf\""); //attachement
 
 			    final OutputStream outStream = response.getOutputStream();
 			    JasperExportManager.exportReportToPdfStream(jasperPrint, outStream);
@@ -66,5 +66,96 @@ public class RelatorioController implements Serializable{
 				e.printStackTrace();
 			}
 	}
+	
+	@GetMapping("/administrativo/cidade/imprimirCidade")
+	public void imprimirCidades(HttpServletResponse response) throws Exception {
+			try {
+				
+//				HashMap<String, Object> parametros = new HashMap<>();
+//				parametros.put("id_da_ficha", id);
+				InputStream stream = this.getClass().getResourceAsStream("/relatorioCidades.jrxml");
+
+				JasperReport report = JasperCompileManager.compileReport(stream);
+				JasperPrint jasperPrint = JasperFillManager.fillReport(report, null,
+						Conexao.getConection());
+				
+				response.setContentType("application/pdf");
+			    response.setHeader("Content-disposition", "inline; filename=\"Relatorio de Cidade.pdf\""); //attachement
+
+			    final OutputStream outStream = response.getOutputStream();
+			    JasperExportManager.exportReportToPdfStream(jasperPrint, outStream);
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+	}
+	
+	@GetMapping("/administrativo/funcionario/imprimirFuncionario")
+	public void imprimirFuncionarios(HttpServletResponse response) throws Exception {
+			try {
+				
+//				HashMap<String, Object> parametros = new HashMap<>();
+//				parametros.put("id_da_ficha", id);
+				InputStream stream = this.getClass().getResourceAsStream("/relatorioFuncionarios.jrxml");
+
+				JasperReport report = JasperCompileManager.compileReport(stream);
+				JasperPrint jasperPrint = JasperFillManager.fillReport(report, null,
+						Conexao.getConection());
+				
+				response.setContentType("application/pdf");
+			    response.setHeader("Content-disposition", "inline; filename=\"Relatorio de Funcionarios.pdf\""); //attachement
+
+			    final OutputStream outStream = response.getOutputStream();
+			    JasperExportManager.exportReportToPdfStream(jasperPrint, outStream);
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+	}
+	@GetMapping("/administrativo/enderecos/imprimirEnderecos")
+	public void imprimirEnderecos(HttpServletResponse response) throws Exception {
+			try {
+				
+//				HashMap<String, Object> parametros = new HashMap<>();
+//				parametros.put("id_da_ficha", id);
+				InputStream stream = this.getClass().getResourceAsStream("/relatorioEnderecos.jrxml");
+
+				JasperReport report = JasperCompileManager.compileReport(stream);
+				JasperPrint jasperPrint = JasperFillManager.fillReport(report, null,
+						Conexao.getConection());
+				
+				response.setContentType("application/pdf");
+			    response.setHeader("Content-disposition", "inline; filename=\"Relatorio de Enderecos.pdf\""); //attachement
+
+			    final OutputStream outStream = response.getOutputStream();
+			    JasperExportManager.exportReportToPdfStream(jasperPrint, outStream);
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+	}
+	@GetMapping("/administrativo/fichas/imprimirFichas")
+	public void imprimirFichas(HttpServletResponse response) throws Exception {
+			try {
+				
+//				HashMap<String, Object> parametros = new HashMap<>();
+//				parametros.put("id_da_ficha", id);
+				InputStream stream = this.getClass().getResourceAsStream("/relatorioFichas.jrxml");
+
+				JasperReport report = JasperCompileManager.compileReport(stream);
+				JasperPrint jasperPrint = JasperFillManager.fillReport(report, null,
+						Conexao.getConection());
+				
+				response.setContentType("application/pdf");
+			    response.setHeader("Content-disposition", "inline; filename=\"Relatorio de Fichas.pdf\""); //attachement
+
+			    final OutputStream outStream = response.getOutputStream();
+			    JasperExportManager.exportReportToPdfStream(jasperPrint, outStream);
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+	}
+	
 
 }

@@ -24,14 +24,14 @@ public class Tratamento implements Serializable {
 	
 //	@Column(nullable = false, length = 50)
 //	@NotEmpty(message = "O nome da ficha é obrigatório")
-	private Integer larv1Tipo;
-	private Integer larv1QtdeGramas;
-	private Integer larv1QtdeDepTrat;
-	private Integer larv2Tipo;
-	private Integer larv2QtdeGramas;
-	private Integer larv2QtdeDepTrat;
-	private Integer adultTipo;
-	private Integer adultQtdeCargas;
+	private String larv1Tipo;
+	private Long larv1QtdeGramas;
+	private Long larv1QtdeDepTrat;
+	private String larv2Tipo;
+	private Long larv2QtdeGramas;
+	private Long larv2QtdeDepTrat;
+	private String adultTipo;
+	private Long adultQtdeCargas;
 	
 	@ManyToOne
 	private Enderecos enderecos;
@@ -44,67 +44,69 @@ public class Tratamento implements Serializable {
 		this.id = id;
 	}
 
-	public Integer getLarv1Tipo() {
+	public String getLarv1Tipo() {
 		return larv1Tipo;
 	}
 
-	public void setLarv1Tipo(Integer larv1Tipo) {
+	public void setLarv1Tipo(String larv1Tipo) {
 		this.larv1Tipo = larv1Tipo;
 	}
 
-	public Integer getLarv1QtdeGramas() {
+	public Long getLarv1QtdeGramas() {
 		return larv1QtdeGramas;
 	}
 
-	public void setLarv1QtdeGramas(Integer larv1QtdeGramas) {
+	public void setLarv1QtdeGramas(Long larv1QtdeGramas) {
 		this.larv1QtdeGramas = larv1QtdeGramas;
 	}
 
-	public Integer getLarv1QtdeDepTrat() {
+	public Long getLarv1QtdeDepTrat() {
 		return larv1QtdeDepTrat;
 	}
 
-	public void setLarv1QtdeDepTrat(Integer larv1QtdeDepTrat) {
+	public void setLarv1QtdeDepTrat(Long larv1QtdeDepTrat) {
 		this.larv1QtdeDepTrat = larv1QtdeDepTrat;
 	}
 
-	public Integer getLarv2Tipo() {
+
+
+	public String getLarv2Tipo() {
 		return larv2Tipo;
 	}
 
-	public void setLarv2Tipo(Integer larv2Tipo) {
+	public void setLarv2Tipo(String larv2Tipo) {
 		this.larv2Tipo = larv2Tipo;
 	}
 
-	public Integer getLarv2QtdeGramas() {
+	public Long getLarv2QtdeGramas() {
 		return larv2QtdeGramas;
 	}
 
-	public void setLarv2QtdeGramas(Integer larv2QtdeGramas) {
+	public void setLarv2QtdeGramas(Long larv2QtdeGramas) {
 		this.larv2QtdeGramas = larv2QtdeGramas;
 	}
 
-	public Integer getLarv2QtdeDepTrat() {
+	public Long getLarv2QtdeDepTrat() {
 		return larv2QtdeDepTrat;
 	}
 
-	public void setLarv2QtdeDepTrat(Integer larv2QtdeDepTrat) {
+	public void setLarv2QtdeDepTrat(Long larv2QtdeDepTrat) {
 		this.larv2QtdeDepTrat = larv2QtdeDepTrat;
 	}
 
-	public Integer getAdultTipo() {
+	public String getAdultTipo() {
 		return adultTipo;
 	}
 
-	public void setAdultTipo(Integer adultTipo) {
+	public void setAdultTipo(String adultTipo) {
 		this.adultTipo = adultTipo;
 	}
 
-	public Integer getAdultQtdeCargas() {
+	public Long getAdultQtdeCargas() {
 		return adultQtdeCargas;
 	}
 
-	public void setAdultQtdeCargas(Integer adultQtdeCargas) {
+	public void setAdultQtdeCargas(Long adultQtdeCargas) {
 		this.adultQtdeCargas = adultQtdeCargas;
 	}
 

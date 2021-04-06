@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report1" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="b55de463-9916-495c-bbf3-54b27cbc4d2e">
+	<property name="ireport.zoom" value="1.5000000000000198"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[SELECT
+     ficha."categoria" AS ficha_categoria,
+     ficha."ciclo_ano" AS ficha_ciclo_ano,
+     ficha."codigo" AS ficha_codigo,
+     ficha."conclusao" AS ficha_conclusao,
+     ficha."tipo" AS ficha_tipo,
+     ficha."ficha_salva" AS ficha_ficha_salva,
+     ficha."data_atividade" AS ficha_data_atividade,
+     ficha."zona" AS ficha_zona,
+     enderecos."complemento" AS enderecos_complemento,
+     enderecos."endereco" AS enderecos_endereco,
+     enderecos."hora_entrada" AS enderecos_hora_entrada,
+     enderecos."imv_trat" AS enderecos_imv_trat,
+     enderecos."lado" AS enderecos_lado,
+     enderecos."num_quarteirao" AS enderecos_num_quarteirao,
+     enderecos."numero" AS enderecos_numero,
+     enderecos."pendencia" AS enderecos_pendencia,
+     enderecos."segmento" AS enderecos_segmento,
+     enderecos."segmento_anterior" AS enderecos_segmento_anterior,
+     enderecos."tipo_imovel" AS enderecos_tipo_imovel,
+     enderecos."visita" AS enderecos_visita,
+     enderecos."ficha_id" AS enderecos_ficha_id,
+     ficha."cidade_id" AS ficha_cidade_id,
+     ficha."funcionario_id" AS ficha_funcionario_id,
+     cidade."nome" AS cidade_nome,
+     cidade."estado_id" AS cidade_estado_id,
+     ficha."id" AS ficha_id,
+     funcionario."nome" AS funcionario_nome,
+     enderecos."imv_inspecionado" AS enderecos_imv_inspecionado
+FROM
+     "public"."enderecos" enderecos INNER JOIN "public"."ficha" ficha ON enderecos."ficha_id" = ficha."id"
+     INNER JOIN "public"."tratametno" tratametno ON enderecos."id" = tratametno."enderecos_id"
+     INNER JOIN "public"."amostra" amostra ON enderecos."id" = amostra."enderecos_id"
+     INNER JOIN "public"."depositos" depositos ON enderecos."id" = depositos."enderecos_id"
+     INNER JOIN "cidade" cidade ON ficha."cidade_id" = cidade."id"
+     INNER JOIN "funcionario" funcionario ON ficha."funcionario_id" = funcionario."id"]]>
+	</queryString>
+	<field name="ficha_categoria" class="java.lang.String"/>
+	<field name="ficha_ciclo_ano" class="java.lang.String"/>
+	<field name="ficha_codigo" class="java.lang.Integer"/>
+	<field name="ficha_conclusao" class="java.lang.String"/>
+	<field name="ficha_tipo" class="java.lang.String"/>
+	<field name="ficha_ficha_salva" class="java.lang.Boolean"/>
+	<field name="ficha_data_atividade" class="java.sql.Timestamp"/>
+	<field name="ficha_zona" class="java.lang.String"/>
+	<field name="enderecos_complemento" class="java.lang.String"/>
+	<field name="enderecos_endereco" class="java.lang.String"/>
+	<field name="enderecos_hora_entrada" class="java.sql.Timestamp"/>
+	<field name="enderecos_imv_trat" class="java.lang.String"/>
+	<field name="enderecos_lado" class="java.lang.String"/>
+	<field name="enderecos_num_quarteirao" class="java.lang.Integer"/>
+	<field name="enderecos_numero" class="java.lang.String"/>
+	<field name="enderecos_pendencia" class="java.lang.String"/>
+	<field name="enderecos_segmento" class="java.lang.String"/>
+	<field name="enderecos_segmento_anterior" class="java.lang.String"/>
+	<field name="enderecos_tipo_imovel" class="java.lang.String"/>
+	<field name="enderecos_visita" class="java.lang.String"/>
+	<field name="enderecos_ficha_id" class="java.lang.Long"/>
+	<field name="ficha_cidade_id" class="java.lang.Long"/>
+	<field name="ficha_funcionario_id" class="java.lang.Long"/>
+	<field name="cidade_nome" class="java.lang.String"/>
+	<field name="cidade_estado_id" class="java.lang.Long"/>
+	<field name="ficha_id" class="java.lang.Long"/>
+	<field name="funcionario_nome" class="java.lang.String"/>
+	<field name="enderecos_imv_inspecionado" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="44" splitType="Stretch">
+			<staticText>
+				<reportElement x="172" y="0" width="315" height="20" uuid="730c0a16-103d-46d5-97f1-1f573d6302d3"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[PROGRAMA NACIONAL DE CONTROLE DA DENGUE - PNCD]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="172" y="21" width="315" height="20" uuid="62f5376f-29d4-4dab-86c1-c3461ead6263"/>
+				<textElement textAlignment="Center">
+					<font size="15" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ENDEREÇOS CADASTRADOS]]></text>
+			</staticText>
+			<image>
+				<reportElement x="45" y="0" width="66" height="41" uuid="53a8336f-ece4-49d3-b96e-48fa0c5a9f3f"/>
+				<imageExpression><![CDATA["C:\\Users\\Luiz Gustavo\\Pictures\\Imagens do Report\\sus-logo.png"]]></imageExpression>
+			</image>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="697" y="1" width="100" height="20" uuid="aac689c6-5a83-43d0-9e99-ca0827b2f926"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="16" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="33" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="13" width="148" height="20" uuid="8f990aa4-1a8f-4bba-b45f-3981a111d213"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[ENDEREÇO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="226" y="13" width="71" height="20" uuid="fa17d926-af18-4155-bd35-d75f3fa75d44"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[TRATADO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="297" y="13" width="89" height="20" uuid="0bd6d77f-f5cf-43ad-ae11-636d0056d72a"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[PENDÊNCIA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="386" y="13" width="86" height="20" uuid="45aea184-fea1-484b-a643-5592a022e846"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[TIPO IMÓVEL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="472" y="13" width="100" height="20" uuid="cd624850-4984-4325-a5b1-331684439c00"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[VISITA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="572" y="13" width="100" height="20" uuid="628dce85-379a-421e-9e48-2f68e8ce1915"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[CIDADE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="672" y="13" width="89" height="20" uuid="37b0a262-16e8-45ac-8b1c-cefdc0e3fb9b"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[FUNCIONÁRIO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="148" y="13" width="78" height="20" uuid="00986531-a77e-40c0-8d63-bf5607c5f2d8"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[NUM.]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="21" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="148" height="20" uuid="a797b32e-44cd-42ce-850b-9c1926eac782"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{enderecos_endereco}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="230" y="0" width="67" height="20" uuid="489adcd6-09e3-450f-b407-e2bfa9dc5dc7"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{enderecos_imv_trat}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="148" y="0" width="82" height="20" uuid="794e510f-f8ec-447d-ac3d-9987fd3e9a79"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{enderecos_numero}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="297" y="0" width="89" height="20" uuid="a3973165-ad99-45e0-bb53-5122d03d3cbe"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{enderecos_pendencia}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="386" y="0" width="86" height="20" uuid="c1382556-5c41-4329-9c56-678202c4a64c"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{enderecos_tipo_imovel}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="472" y="0" width="100" height="20" uuid="43eb2adc-e22a-43be-aa08-ec594974b6dc"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{enderecos_visita}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="572" y="0" width="100" height="20" uuid="0f43dc68-51ea-4e21-87bf-4bcf0d076bfb"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{cidade_nome}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="672" y="0" width="89" height="20" uuid="ddbc3a94-ec83-4e76-879e-1b23b5fd6d19"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{funcionario_nome}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="21" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

@@ -22,7 +22,7 @@
 			<div class="main">
 
 				<div class="container">
-					<div class="signup-content">
+					<div class="">
 						<h2 class="form-title">Cadastro de Estado</h2>
 						<div id="mensagem"></div>
 						<form class="signup-form" th:object="${papel}" id="papelJS"
@@ -52,9 +52,9 @@
 
 							<div class="form-group">
 								<input type="submit" name="submit" id="submit"
-									class="form-submit" value="Salvar" /> <a
+									class="btn btn-success btn-lg" value="Salvar" /> <a
 									th:href="@{/administrativo}"><button type="button"
-										class="form-cancel" id="submit">Cancelar</button></a>
+										class="btn btn-danger btn-lg" id="submit">Cancelar</button></a>
 							</div>
 
 						</form>
